@@ -1,6 +1,6 @@
 package modele;
 
-public enum Cell_State {
+public enum CellState {
 	BLANK,
 	HIT,
 	MISSED,

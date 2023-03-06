@@ -2,8 +2,8 @@ package modele;
 
 public class Cellule {
 	private Position position;
-	private Cell_State state = Cell_State.BLANK;
-	public Cellule(Position position, Cell_State state) {
+	private CellState state = CellState.BLANK;
+	public Cellule(Position position, CellState state) {
 		super();
 		this.position = position;
 		this.state = state;
