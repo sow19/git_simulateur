@@ -37,13 +37,19 @@ public class Grid {
 		this.board = board;
 	}
 
-	//renvoyer la cellule correspondant à une position
+	/**
+	 * cette méthode renvoie la cellule correspondant à une position de la grille
+	 * @param position
+	 * @return
+	 */
 
 	public Cellule getCellulePosition(Position position){
 		return this.board[position.getX()][position.getY()];
 	}
 
-	//Affichage de la grille 
+	/**
+	 * cette méthode permet d'afficher la grille
+	 */
 
 
 	public void afficher() {

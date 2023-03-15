@@ -28,7 +28,11 @@ public class RandomPlayer extends AbstractPlayer {
 
 
 
-	//cette méthode permet au joueur de choisir une position alétoire
+	/**
+
+    Méthode qui génère une position aléatoire pour un tir sur la grille de l'adversaire.
+    * @return La position aléatoire générée.
+    */
 
 	public Position shoot(){
 		int x = random.nextInt(this.grid.getDimension().getRows());
@@ -37,22 +41,32 @@ public class RandomPlayer extends AbstractPlayer {
 	}
 
 
-	//cette méthode permet au joueur de placer ses navires de façons aléatoire
-
-	public boolean addShipRandomLy() {
-			boolean navirePlace = false;
-			while (!navirePlace) {
-				int x = random.nextInt(this.getGrid().getDimension().getRows());
-				int y = random.nextInt(this.getGrid().getDimension().getCols());
-				boolean estVertical = random.nextBoolean();
-				this.addShip(x, y, new Ship(5), estVertical); // modifier la taille du bateau
+	
+	/**
+	 * Place un navire aléatoirement sur la grille.
+	 * s'exécute tant que le navire n'est pas bien placé
+	 */
+	public void addShipRandomLy() {
+		boolean navirePlace = false;
+		while (!navirePlace) {
+			int x = random.nextInt(this.getGrid().getDimension().getRows());
+			int y = random.nextInt(this.getGrid().getDimension().getCols());
+			boolean estVertical = random.nextBoolean();
+			boolean added = this.addShip(x, y, new Ship(5), estVertical); // modifier la taille du bateau
+			if (added) {
 				navirePlace = true;
-				return true;
-				
 			}
-
-			return false;
 		}
+	}
+
+	public void putShipVisible(){
+		for(Ship ship : this.fleet){
+			if(ship.isSank()){
+				ship.setVisible(true);
+			}
+		}
+
+	}
 		
 	
 

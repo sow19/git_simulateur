@@ -88,7 +88,11 @@ public abstract class AbstractPlayer {
 		return true;
 	}
 
+	/**
 
+    * Vérifie si tous les navires de la flotte ont été coulés.
+    * @return true si tous les navires ont été coulés, false sinon.
+    */
 	public boolean isLost(){
 		for(Ship ship : this.fleet){
 			if(!ship.isSank()){
@@ -100,9 +104,16 @@ public abstract class AbstractPlayer {
 
 
 	
+	/**
+	 * permet de rendre un navire visible
+	 */
+
+	
 
 
 	public abstract Position shoot();
+
+	public abstract void putShipVisible();
 	
 
 }

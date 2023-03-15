@@ -46,8 +46,10 @@ public class Game {
 		this.currentPlayer = currentPlayer;
 	}
 
-
-	//cette méthode retourne la joueur courant
+	/**
+	 * cette méthode retourne le gagnat de la partie
+	 * @return retourne le joueur dont tous les navires ont été coulé
+	 */
 
 	public AbstractPlayer getWinner() {
         if (this.humainPlayer.isLost()) {
@@ -59,7 +61,10 @@ public class Game {
     }
 
 
-	//cette méthode vérifie le gagant
+	/**
+	 * vérifie si le jeu est terminé
+	 * @return true si
+	 */
     public boolean isOver() {
         return (getWinner() != null);
     }
@@ -81,6 +86,12 @@ public class Game {
 		}
 	
 		this.currentPlayer = adversaire;
+	}
+
+	public void shipRandomVisible(){
+		if(this.currentPlayer == this.randomPlayer){
+			this.currentPlayer.putShipVisible();
+		}
 	}
 
 
