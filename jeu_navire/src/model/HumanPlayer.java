@@ -32,6 +32,9 @@ public class HumanPlayer  extends AbstractPlayer{
 		return new Position(x, y);
 
 	}
+	/**
+	 * met tous les navires du joueur en mode visible
+	 */
 
 	public void putShipVisible(){
 		for(Ship ship : this.fleet){

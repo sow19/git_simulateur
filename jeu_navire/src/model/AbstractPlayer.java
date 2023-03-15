@@ -103,16 +103,21 @@ public abstract class AbstractPlayer {
 	}
 
 
+
+
 	
 	/**
-	 * permet de rendre un navire visible
+	 * permet à joueur de choisir la position sur laquelle il va effectuer son tir
+	 * @return la position choisit par le joueur
 	 */
-
-	
-
 
 	public abstract Position shoot();
 
+
+		
+	/**
+	 * permet de rendre un navire visible
+	 */
 	public abstract void putShipVisible();
 	
 

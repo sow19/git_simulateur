@@ -59,6 +59,12 @@ public class RandomPlayer extends AbstractPlayer {
 		}
 	}
 
+
+	/**
+
+    Met à jour la visibilité des navires coulés de la flotte pour les rendre visibles.
+    Parcourt chaque navire de la flotte, et si le navire est coulé, définit sa visibilité à true.
+    */
 	public void putShipVisible(){
 		for(Ship ship : this.fleet){
 			if(ship.isSank()){

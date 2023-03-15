@@ -72,7 +72,16 @@ public class Game {
 
 	
 
-	//cette methode permet de passer la grille d'un joueur à l'autre
+	/**
+
+    * Cette méthode permet à un joueur de tirer sur la grille de son adversaire.
+    * Elle prend en paramètre la position à laquelle le joueur souhaite tirer.
+    * L'adversaire est choisi en fonction du joueur courant.
+    * Si la cellule visée contient un bateau, sa cellule est mise à jour en tant que HIT, sinon elle est mise à jour en tant que MISSED.
+    * La méthode putShipVisible est appelée sur l'adversaire pour mettre à jour l'état des bateaux.
+    * Enfin, le joueur courant est changé pour passer à l'adversaire.
+    @param position la position visée par le joueur
+    */
 
 	public void shootGridAdversaire(Position position) {
 		AbstractPlayer adversaire = (this.currentPlayer == this.humainPlayer) ? this.randomPlayer : this.humainPlayer;
@@ -84,6 +93,7 @@ public class Game {
 		} else {
 			celluleAdversaire.setState(CellState.MISSED);
 		}
+		adversaire.putShipVisible();
 	
 		this.currentPlayer = adversaire;
 	}
@@ -95,6 +105,14 @@ public class Game {
 	}
 
 
+
+	/**
+
+    * Joue une partie complète de bataille navale entre les deux joueurs.
+    * Tant que la partie n'est pas terminée, le joueur en cours demande une position
+    * pour tirer sur la grille de l'adversaire, puis l'autre joueur joue à son tour.
+   
+    */
 	
 
 	public void play() {
@@ -105,11 +123,8 @@ public class Game {
 			this.getWinner();
         }
 
-        if (this.getWinner() != null) {
-            System.out.println("Le joueur " + getWinner().getName() + " a gagné !");
-        } else {
-            System.out.println("Match nul !");
-        }
+        System.out.println("Le joueur " + getWinner().getName() + " a gagné !");
+		
     }
 
 	
