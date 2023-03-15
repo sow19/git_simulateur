@@ -1,4 +1,4 @@
-package modele;
+package model;
 
 public enum CellState {
 	BLANK,

@@ -1,11 +1,12 @@
 package model;
 
-import javax.swing.text.Position;
-
 public class Cellule {
 	private Position position;
 	private CellState state;
 	private boolean isAssignedShip;
+
+	//constructeur
+
 	public Cellule(Position position) {
 		this.position = position;
 		this.state = CellState.BLANK;
@@ -18,6 +19,8 @@ public class Cellule {
 		this.isAssignedShip = false;
 		
 	}
+
+	//getters et setters
 
 	public Position getPosition() {
 		return position;
