@@ -65,19 +65,11 @@ public class Game {
     }
 	
 
-	//cette méthode permet de changer le joueur courant
-	public AbstractPlayer changeCurenPlayer(){
-		if(this.currentPlayer == this.humainPlayer){
-			return this.randomPlayer;
-		}else if(this.currentPlayer == this.randomPlayer){
-			return this.humainPlayer;
-		}
-		return null;
-	}
+	
 
 	//cette methode permet de passer la grille d'un joueur à l'autre
 
-	public void testShoot(Position position) {
+	public void shootGridAdversaire(Position position) {
 		AbstractPlayer adversaire = (this.currentPlayer == this.humainPlayer) ? this.randomPlayer : this.humainPlayer;
 	
 		Cellule celluleAdversaire = adversaire.getGrid().getCellulePosition(position);
@@ -98,8 +90,7 @@ public class Game {
         while (!isOver()) {
             System.out.println(currentPlayer.getName() + " joue :");
             Position pos = currentPlayer.shoot();
-            currentPlayer.getGrid().testShoot(pos);
-            this.changeCurenPlayer();
+            this.shootGridAdversaire(pos);
 			this.getWinner();
         }
 
