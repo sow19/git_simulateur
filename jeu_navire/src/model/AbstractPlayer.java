@@ -42,7 +42,15 @@ public abstract class AbstractPlayer {
 	}
 
 
-	//cette méthode permet d'ajouter un navire sur la grille
+		/**
+	 * Ajoute un navire à la grille du joueur aux coordonnées spécifiées, dans la direction spécifiée.
+	 * 
+	 * @param x la coordonnée en X de la position de départ du navire
+	 * @param y la coordonnée en Y de la position de départ du navire
+	 * @param ship le navire à ajouter
+	 * @param estVertical true si le navire doit être ajouté verticalement, false s'il doit être ajouté horizontalement
+	 * @return true si le navire a été ajouté avec succès, false sinon
+	 */
 
 	public boolean addShip(int x, int y, Ship ship,boolean estVertical) {
 		// si on veut ajouter le navire de façon horizontale
