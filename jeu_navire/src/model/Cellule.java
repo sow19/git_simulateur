@@ -45,6 +45,11 @@ public class Cellule {
 	public void setAssignedShip(boolean isAssignedShip) {
 		this.isAssignedShip = isAssignedShip;
 	}
+
+
+	
+
+	
 	
 
 

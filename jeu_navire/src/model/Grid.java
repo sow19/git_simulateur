@@ -29,11 +29,11 @@ public class Grid {
 		this.dimension = dimension;
 	}
 
-	public Cellule[][] getBoord() {
+	public Cellule[][] getBoard() {
 		return board;
 	}
 
-	public void setBoord(Cellule[][] board) {
+	public void setBoard(Cellule[][] board) {
 		this.board = board;
 	}
 
