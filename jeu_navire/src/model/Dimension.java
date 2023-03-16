@@ -4,7 +4,6 @@ public class Dimension {
 	private int rows;
 	private int cols;
 	public Dimension(int rows, int cols) {
-		super();
 		this.rows = rows;
 		this.cols = cols;
 	}

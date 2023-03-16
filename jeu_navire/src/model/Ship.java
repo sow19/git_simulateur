@@ -16,6 +16,7 @@ public class Ship {
 	public Ship(int size) {
 		this.shipCell = new ArrayList<>();
 		this.visible = false;
+		this.size = size;
 	}
 
 	//getters et setters

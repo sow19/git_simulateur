@@ -9,7 +9,7 @@ public class RandomPlayer extends AbstractPlayer {
 
 
 	//constructeur
-	public RandomPlayer(Grid grid, String name) {
+	public RandomPlayer(Grid grid) {
 		super(grid, "Random");
 		this.random = new Random();
 	}

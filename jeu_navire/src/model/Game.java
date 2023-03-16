@@ -47,17 +47,17 @@ public class Game {
 	}
 
 	/**
-	 * cette méthode retourne le gagnat de la partie
-	 * @return retourne le joueur dont tous les navires ont été coulé
+	 * cette méthode retourne le gagnant de la partie
+	 * @return retourne le joueur qui reussi à couler tous les bateaux de l'adversaire
 	 */
 
 	public AbstractPlayer getWinner() {
-        if (this.humainPlayer.isLost()) {
+		
+		if (this.humainPlayer.isLost()) {
             return this.randomPlayer;
-        } else if (this.randomPlayer.isLost()) {
-            return this.humainPlayer;
-        }
-		return null; 
+        }else if (this.randomPlayer.isLost())
+			return this.humainPlayer;
+		return null;
     }
 
 
@@ -98,11 +98,7 @@ public class Game {
 		this.currentPlayer = adversaire;
 	}
 
-	public void shipRandomVisible(){
-		if(this.currentPlayer == this.randomPlayer){
-			this.currentPlayer.putShipVisible();
-		}
-	}
+	
 
 
 

@@ -52,41 +52,39 @@ public abstract class AbstractPlayer {
 	 * @return true si le navire a été ajouté avec succès, false sinon
 	 */
 
-	public boolean addShip(int x, int y, Ship ship,boolean estVertical) {
-		// si on veut ajouter le navire de façon horizontale
-		if(!estVertical){
+	 public boolean addShip(int x, int y, Ship ship, boolean estVertical) {
 
-			if (x + ship.getSize() > this.grid.getDimension().getRows()) {
+		// si on veut ajouter le navire de façon horizontale
+		if (!estVertical) {
+
+			if (y + ship.getSize() > this.grid.getDimension().getCols()) {
 				return false;
 			}
-			for(int i=x;i<y+ship.getSize();i++){
-				//si la cellule n'est pas déja affecté à un bateau
-				if(this.grid.getBoard()[i][y].isAssignedShip()){
+			for (int i = y; i < y + ship.getSize(); i++) {
+
+				// si la cellule n'est pas déjà affectée à un bateau
+				if (this.grid.getBoard()[x][i].isAssignedShip()) {
 					return false;
-					
 				}
 				this.grid.getBoard()[x][i].setAssignedShip(true);
 				fleet.add(ship);
 				ship.getShipCell().add(this.grid.getBoard()[x][i]); // ajouter la cellule à la liste des cellules du bateau
 			}
-		}else{
-
-			if (y + ship.getSize() > this.grid.getDimension().getCols()) {
+		} else {
+			if (x + ship.getSize() > this.grid.getDimension().getRows()) {
 				return false;
 			}
-			for(int j=y;j<x+ship.getSize();j++){
-				if(this.grid.getBoard()[x][j].isAssignedShip()){
+			for (int j = x; j < x + ship.getSize(); j++) {
+				if (this.grid.getBoard()[j][y].isAssignedShip()) {
 					return false;
-
 				}
 				this.grid.getBoard()[j][y].setAssignedShip(true);
 				fleet.add(ship);
-				ship.getShipCell().add(this.grid.getBoard()[j][y]); 
-
+				ship.getShipCell().add(this.grid.getBoard()[j][y]);
 			}
 		}
 		return true;
-	}
+	}		
 
 	/**
 
@@ -94,6 +92,7 @@ public abstract class AbstractPlayer {
     * @return true si tous les navires ont été coulés, false sinon.
     */
 	public boolean isLost(){
+		
 		for(Ship ship : this.fleet){
 			if(!ship.isSank()){
 				return false;
@@ -119,6 +118,14 @@ public abstract class AbstractPlayer {
 	 * permet de rendre un navire visible
 	 */
 	public abstract void putShipVisible();
+
+	@Override
+	public String toString() {
+		return "AbstractPlayer [name=" + name + "]";
+	}
+
+
+	
 	
 
 }

@@ -9,6 +9,7 @@ public class Grid {
 	//constructeur
 	public Grid(Dimension dimension) {
 		this.dimension = dimension;
+		this.board = new Cellule[dimension.getRows()][dimension.getCols()];
 		for(int i=0;i<this.dimension.getRows();i++){
 			for(int j=0; j< this.dimension.getCols();j++){
 				this.board[i][j] = new Cellule();
@@ -58,7 +59,7 @@ public class Grid {
 			System.out.print((char) ('A' + i) + " ");
 			for (int j = 0; j < this.dimension.getCols(); j++) {
 				//s'il ya un bateau sur une cellule
-				if (this.board[i][j].getState() == CellState.BLANK && this.board[i][j].isAssignedShip()) {
+				if (this.board[i][j].isAssignedShip()) {
 					System.out.print("n");
 				}
 				// si une cellule est touché
