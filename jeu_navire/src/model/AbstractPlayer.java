@@ -42,7 +42,7 @@ public abstract class AbstractPlayer {
 	}
 
 
-		/**
+	/**
 	 * Ajoute un navire à la grille du joueur aux coordonnées spécifiées, dans la direction spécifiée.
 	 * 
 	 * @param x la coordonnée en X de la position de départ du navire
@@ -121,7 +121,7 @@ public abstract class AbstractPlayer {
 
 	@Override
 	public String toString() {
-		return "AbstractPlayer [name=" + name + "]";
+		return "AbstractPlayer [name :" + name + "]";
 	}
 
 
