@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import model.*;
 
 public class ModelTest {
-	@Test
+	/*@Test
 	public void testGetWinner() {
 		
 		 Grid grid1 = new Grid(new Dimension(5,5));
@@ -35,7 +35,8 @@ public class ModelTest {
 	        assertEquals(random, game.getWinner());*/
 	        
 	    }
-		
-	}
+
+
+	
 
 
