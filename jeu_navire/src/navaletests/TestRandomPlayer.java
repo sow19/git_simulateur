@@ -42,7 +42,7 @@ public class TestRandomPlayer {
 		    int nbreNavire = random.getFleet().size();
 		    assertTrue(nbreNavire == 1);
 		    Ship ship = random.getFleet().get(0);
-		   // assertTrue(ship.getSize() == 5); 
+		    //assertTrue(ship.getSize() == 5);//attendre la validation du prof 
 		
 	}
 
