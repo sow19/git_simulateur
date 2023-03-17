@@ -14,7 +14,7 @@ public class HumanPlayer  extends AbstractPlayer{
 	/**
 
     * Cette méthode permet de demander à l'utilisateur de choisir une position pour tirer.
-    Elle lit l'entrée utilisateur depuis la console et retourne la position correspondante.
+    Elle lit l'entrée de utilisateur depuis la console et retourne la position correspondante.
     Si l'entrée n'est pas sous la forme 'x,y', elle lance une exception InputMismatchException.
     * @return la position choisie par l'utilisateur
     * @throws InputMismatchException si l'entrée n'est pas sous la forme 'x,y'
@@ -29,7 +29,7 @@ public class HumanPlayer  extends AbstractPlayer{
 		}
 		int x = Integer.parseInt(entree.split(",")[0]);
 		int y = Integer.parseInt(entree.split(",")[1]);
-		return new Position(x, y);
+		return new Position(x,y);
 
 	}
 	/**

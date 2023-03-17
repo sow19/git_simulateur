@@ -42,6 +42,8 @@ public class Demo {
         System.out.println("grille du joueur Random  apres le jeu");
         grid2.afficher();
         System.out.println("le gagant est : " +game.getWinner());*/
+
+        player1.shoot();
         
     }
     

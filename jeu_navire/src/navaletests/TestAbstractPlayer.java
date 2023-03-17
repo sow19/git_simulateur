@@ -22,6 +22,7 @@ public class TestAbstractPlayer {
 		assertEquals(true, humain.getFleet().isEmpty(),"flot du joueur random ok");
 		assertNotNull(humain.getGrid(),"grille du joueur humain ok");
 		assertNotNull(random.getGrid(),"grille du joueur random ok");
+	
 		
 	}
 	
