@@ -21,6 +21,8 @@ public class TestHmainPlayer {
 		assertEquals(grid,humain.getGrid());
 		assertNotNull(humain.getGrid());
 		assertEquals(true, humain.getFleet().isEmpty(),"flot du joueur ok");
+		assertEquals(6, humain.getGrid().getDimension().getRows());
+        assertEquals(6, humain.getGrid().getDimension().getCols());
 	}
 	
 	@Test

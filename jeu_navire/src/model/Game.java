@@ -52,7 +52,6 @@ public class Game {
 	 */
 
 	public AbstractPlayer getWinner() {
-		
 		if (this.humainPlayer.isLost()) {
             return this.randomPlayer;
         }else if (this.randomPlayer.isLost())

@@ -6,6 +6,7 @@ public abstract class AbstractPlayer {
 	protected Grid grid;
 	protected String name;
 	protected ArrayList<Ship> fleet;
+	
 
 	//Constructeurs
 
@@ -42,17 +43,7 @@ public abstract class AbstractPlayer {
 	}
 
 
-	/**
-	 * Ajoute un navire à la grille du joueur aux coordonnées spécifiées, dans la direction spécifiée.
-	 * 
-	 * @param x la coordonnée en X de la position de départ du navire
-	 * @param y la coordonnée en Y de la position de départ du navire
-	 * @param ship le navire à ajouter
-	 * @param estVertical true si le navire doit être ajouté verticalement, false s'il doit être ajouté horizontalement
-	 * @return true si le navire a été ajouté avec succès, false sinon
-	 */
-
-	 public boolean addShip(int x, int y, Ship ship, boolean estVertical) {
+	public boolean isPlaceable(int x, int y, Ship ship, boolean estVertical){
 
 		// si on veut ajouter le navire de façon horizontale
 		if (!estVertical) {
@@ -66,9 +57,8 @@ public abstract class AbstractPlayer {
 				if (this.grid.getBoard()[x][i].isAssignedShip()) {
 					return false;
 				}
-				this.grid.getBoard()[x][i].setAssignedShip(true);
-				fleet.add(ship);
-				ship.getShipCell().add(this.grid.getBoard()[x][i]); // ajouter la cellule à la liste des cellules du bateau
+				
+				
 			}
 		} else {
 			if (x + ship.getSize() > this.grid.getDimension().getRows()) {
@@ -78,28 +68,69 @@ public abstract class AbstractPlayer {
 				if (this.grid.getBoard()[j][y].isAssignedShip()) {
 					return false;
 				}
-				this.grid.getBoard()[j][y].setAssignedShip(true);
-				fleet.add(ship);
-				ship.getShipCell().add(this.grid.getBoard()[j][y]);
+				
+				
 			}
 		}
 		return true;
-	}		
+
+	}
+
 
 	/**
+	 * Ajoute un navire à la grille du joueur aux coordonnées spécifiées, dans la direction spécifiée.
+	 * 
+	 * @param x la coordonnée en X de la position de départ du navire
+	 * @param y la coordonnée en Y de la position de départ du navire
+	 * @param ship le navire à ajouter
+	 * @param estVertical true si le navire doit être ajouté verticalement, false s'il doit être ajouté horizontalement
+	 * @return true si le navire a été ajouté avec succès, false sinon
+	 */
 
-    * Vérifie si tous les navires de la flotte ont été coulés.
-    * @return true si tous les navires ont été coulés, false sinon.
-    */
-	public boolean isLost(){
-		
-		for(Ship ship : this.fleet){
-			if(!ship.isSank()){
-				return false;
+	 public boolean addShip(int x, int y, Ship ship, boolean estVertical) {
+
+		if(!isPlaceable(x, y, ship, estVertical)){
+			return false;
+		}else{
+
+			if (!estVertical) {
+
+				
+				for (int i = y; i < y + ship.getSize(); i++) {
+	
+					this.grid.getBoard()[x][i].setAssignedShip(true);
+					ship.getShipCell().add(this.grid.getBoard()[x][i]); // ajouter la cellule à la liste des cellules du bateau
+				}
+			} else {
+				
+				for (int j = x; j < x + ship.getSize(); j++) {
+
+					this.grid.getBoard()[j][y].setAssignedShip(true);
+					ship.getShipCell().add(this.grid.getBoard()[j][y]);
+				}
 			}
+	 	}
+		this.fleet.add(ship);
+		return true;	
+				
+	 }
+			 
+		/**
+		
+		* Vérifie si tous les navires de la flotte ont été coulés.
+		* @return true si tous les navires ont été coulés, false sinon.
+		*/
+		public boolean isLost(){
+			for(Ship ship : this.fleet){
+				if(!ship.isSank()){
+					return false;
+				}
+			}
+			return true;
+
 		}
-		return true;
-	}
+		
+	
 
 
 

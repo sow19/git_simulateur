@@ -52,7 +52,7 @@ public class RandomPlayer extends AbstractPlayer {
 			int x = random.nextInt(this.getGrid().getDimension().getRows());
 			int y = random.nextInt(this.getGrid().getDimension().getCols());
 			boolean estVertical = random.nextBoolean();
-			boolean added = this.addShip(x, y, new Ship(5), estVertical); // modifier la taille du bateau
+			boolean added = this.addShip(x, y, new Ship(3), estVertical); // modifier la taille du bateau
 			if (added) {
 				navirePlace = true;
 			}
