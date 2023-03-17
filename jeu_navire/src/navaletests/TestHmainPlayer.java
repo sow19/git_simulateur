@@ -14,6 +14,15 @@ public class TestHmainPlayer {
 	private Grid grid = new Grid(new Dimension(6,6));
 	private HumanPlayer humain = new HumanPlayer(grid, "saoudatou");
 	
+	
+	@Test
+	public void testConstructeur() {
+		assertEquals("saoudatou",humain.getName());
+		assertEquals(grid,humain.getGrid());
+		assertNotNull(humain.getGrid());
+		assertEquals(true, humain.getFleet().isEmpty(),"flot du joueur ok");
+	}
+	
 	@Test
 	public void testShoot()  throws Exception {
 		
