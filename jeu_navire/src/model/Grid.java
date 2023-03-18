@@ -1,6 +1,8 @@
 package model;
 
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
 
 public class Grid {
 	private Dimension dimension;
@@ -58,13 +60,17 @@ public class Grid {
 		for (int i = 0; i < this.dimension.getRows(); i++) {
 			System.out.print((char) ('A' + i) + " ");
 			for (int j = 0; j < this.dimension.getCols(); j++) {
+				if(this.board[i][j].isAssignedShip() && this.board[i][j].getState() == CellState.BLANK){
+					System.out.print("n ");
+
+				}else if (this.board[i][j].isAssignedShip() && this.board[i][j].getState() == CellState.HIT) {
+					System.out.print("X "); // si une cellule est touché
 				
-				// si une cellule est touché
-				if (this.board[i][j].getState() == CellState.HIT) {
-					System.out.print("X ");
+				
+				
 
 				
-					// si une cellule est ratéé
+				// si une cellule est ratéé
 				} else if( this.board[i][j].getState() == CellState.MISSED) {
 					System.out.print("! ");
 
@@ -79,6 +85,18 @@ public class Grid {
 			}
 			System.out.println();
 		}
+	}
+
+	public List <Position> gridPosition(){
+		List <Position> positions = new ArrayList<>();
+		for(int i=0;i<this.getBoard().length;i++){
+			for(int j =0;j<this.getBoard()[0].length;j++){
+				positions.add(new Position(i, j));
+			}
+		}
+		
+		Collections.shuffle(positions);
+		return positions;
 	}
 
 

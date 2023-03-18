@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Random;
 
 public class RandomPlayer extends AbstractPlayer {
@@ -47,21 +49,25 @@ public class RandomPlayer extends AbstractPlayer {
 	 * s'exécute tant que le navire n'est pas bien placé
 	 */
 	public void addShipRandomLy(int nbreNavire) {
-		boolean navirePlace = false;
-		for(int i =0; i<nbreNavire;i++){
-			while (!navirePlace) {
-				int x = random.nextInt(this.getGrid().getDimension().getRows());
-				int y = random.nextInt(this.getGrid().getDimension().getCols());
-				boolean estVertical = random.nextBoolean();
-				boolean added = this.addShip(x, y, new Ship(5), estVertical); // modifier la taille du bateau
-				if (added) {
-					navirePlace = true;
-				}
-			}
-
-		}
 		
+		
+		for(int i =0; i<nbreNavire;i++){
+			//Collections.shuffle(this.grid.gridPosition());
+			
+			for(Position position : this.getGrid().gridPosition()){
+
+				boolean added = this.addShip(position.getX(),position.getY(), new Ship(5), true); // modifier la taille du navire 
+				if (!added) {
+					added = this.addShip(position.getX(),position.getY(), new Ship(5), false);
+				}
+				if (added)
+					break;
+			}
+				
+		}
 	}
+		
+	
 
 
 	/**
