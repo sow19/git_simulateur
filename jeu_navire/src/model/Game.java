@@ -52,10 +52,13 @@ public class Game {
 	 */
 
 	public AbstractPlayer getWinner() {
-		if (this.humainPlayer.isLost()) {
-            return this.randomPlayer;
-        }else if (this.randomPlayer.isLost())
+		if (this.randomPlayer.isLost()) {
+            return this.humainPlayer;
+        }
+		if (this.humainPlayer.isLost()){
 			return this.humainPlayer;
+		}
+		
 		return null;
     }
 
@@ -65,7 +68,7 @@ public class Game {
 	 * @return true si
 	 */
     public boolean isOver() {
-        return (getWinner() != null);
+        return (getWinner()!= null);
     }
 	
 
@@ -122,14 +125,5 @@ public class Game {
 		
     }
 
-	
-
-
-
-
-	
-
-	
-
-	
+		
 }

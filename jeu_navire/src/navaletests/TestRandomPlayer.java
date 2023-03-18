@@ -38,7 +38,7 @@ public class TestRandomPlayer {
 	
 	@Test
 	public void testAddShipRandomly() {
-		    random.addShipRandomLy();
+		    random.addShipRandomLy(5);
 		    int nbreNavire = random.getFleet().size();
 		    assertTrue(nbreNavire == 1);
 		    Ship ship = random.getFleet().get(0);

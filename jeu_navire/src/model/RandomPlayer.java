@@ -46,17 +46,21 @@ public class RandomPlayer extends AbstractPlayer {
 	 * Place un navire aléatoirement sur la grille.
 	 * s'exécute tant que le navire n'est pas bien placé
 	 */
-	public void addShipRandomLy() {
+	public void addShipRandomLy(int nbreNavire) {
 		boolean navirePlace = false;
-		while (!navirePlace) {
-			int x = random.nextInt(this.getGrid().getDimension().getRows());
-			int y = random.nextInt(this.getGrid().getDimension().getCols());
-			boolean estVertical = random.nextBoolean();
-			boolean added = this.addShip(x, y, new Ship(5), estVertical); // modifier la taille du bateau
-			if (added) {
-				navirePlace = true;
+		for(int i =0; i<nbreNavire;i++){
+			while (!navirePlace) {
+				int x = random.nextInt(this.getGrid().getDimension().getRows());
+				int y = random.nextInt(this.getGrid().getDimension().getCols());
+				boolean estVertical = random.nextBoolean();
+				boolean added = this.addShip(x, y, new Ship(5), estVertical); // modifier la taille du bateau
+				if (added) {
+					navirePlace = true;
+				}
 			}
+
 		}
+		
 	}
 
 

@@ -49,7 +49,7 @@ public class Ship {
 
 	public boolean isSank(){
 		for(Cellule cellule : shipCell){
-			if(cellule.getState()!=CellState.HIT){
+			if(!cellule.getState().equals(CellState.HIT)){
 				return false;
 			}
 		}

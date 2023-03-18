@@ -124,6 +124,7 @@ public abstract class AbstractPlayer {
 			for(Ship ship : this.fleet){
 				if(!ship.isSank()){
 					return false;
+
 				}
 			}
 			return true;
