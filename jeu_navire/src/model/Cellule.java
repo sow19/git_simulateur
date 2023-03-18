@@ -1,12 +1,17 @@
 package model;
+/**
+ * classe representant une cellule de la grille d'un joueur
+ */
 
 public class Cellule {
 	private Position position;
 	private CellState state;
 	private boolean isAssignedShip;
 
-	//constructeur
-
+	/**
+	 * constructeur de la classe initialise une cellule avec une position ,l'etat de la cellule à BLANK,et dit qu'elle n'appartient pas à un navire
+	 * @param position
+	 */
 	public Cellule(Position position) {
 		this.position = position;
 		this.state = CellState.BLANK;
@@ -14,6 +19,10 @@ public class Cellule {
 		
 	}
 
+	/**
+	 * constructeur de la classe initialise une cellule  avec l'etat de la cellule à BLANK,et dit qu'elle n'appartient pas à un navire
+	 * @param position
+	 */
 	public Cellule() {
 		this.state = CellState.BLANK;
 		this.isAssignedShip = false;

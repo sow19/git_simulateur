@@ -1,18 +1,18 @@
 package model;
 
 import java.util.ArrayList;
-
-
-
+/**
+ * classe représentant un navire
+*/
 public class Ship {
 	private ArrayList<Cellule> shipCell;
 	private boolean visible;
 	private int size;
 
-
-
-	//constructeurs
-
+	/**
+	 * Constructeur de la classe initialise un ship avec une liste de cellule vide, un etat visible false et une taille du navire
+	 * @param size : represente la taille du navire
+	 */
 	public Ship(int size) {
 		this.shipCell = new ArrayList<>();
 		this.visible = false;
@@ -45,8 +45,10 @@ public class Ship {
 		this.size = size;
 	}
 
-	// verifie si un bateau est coulé
-
+	/**
+	 * vérifie si l'ensemble des cellules d'un navire sont touchés
+	 * @return true si toutes les cellules sont touchées false sinon
+	 */
 	public boolean isSank(){
 		for(Cellule cellule : shipCell){
 			if(!cellule.getState().equals(CellState.HIT)){
@@ -54,11 +56,6 @@ public class Ship {
 			}
 		}
 		return true;
-	}
-
-	
-
-
-	
+	}	
 	
 }
