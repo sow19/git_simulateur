@@ -82,8 +82,10 @@ public class Game {
 	
 		if (celluleAdversaire.isAssignedShip()) {
 			celluleAdversaire.setState(CellState.HIT);
+			System.out.print("touché à la position "+position);
 		} else {
 			celluleAdversaire.setState(CellState.MISSED);
+			System.out.print("position "+position+" ratée");
 		}
 		adversaire.putShipVisible();
 	

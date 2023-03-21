@@ -130,6 +130,7 @@ public abstract class AbstractPlayer {
 					return false;
 				}
 			}
+			System.out.println("j'ai perdu");
 			return true;
 		}
 	/**

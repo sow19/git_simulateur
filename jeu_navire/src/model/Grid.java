@@ -55,9 +55,17 @@ public class Grid {
 	 * cette méthode permet d'afficher la grille
 	 */
 	public void afficher() {
+
+		System.out.print("  ");
+        for (int i = 0; i < dimension.getRows(); i++) {
+            System.out.print(i + 1 + " ");
+        }
+        System.out.println();
+
 		for (int i = 0; i < this.dimension.getRows(); i++) {
 			System.out.print((char) ('A' + i) + " ");
 			for (int j = 0; j < this.dimension.getCols(); j++) {
+				
 				if(this.board[i][j].isAssignedShip() && this.board[i][j].getState() == CellState.BLANK){
 					System.out.print("n ");
 

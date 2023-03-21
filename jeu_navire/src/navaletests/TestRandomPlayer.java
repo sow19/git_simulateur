@@ -38,13 +38,9 @@ public class TestRandomPlayer {
 	
 	@Test
 	public void testAddShipRandomly() {
-		    random.addShipRandomLy(5);
+		    random.addShipRandomLy();
 		    int nbreNavire = random.getFleet().size();
-		    assertTrue(nbreNavire == 5);
-		    Ship ship = random.getFleet().get(0);
-		    //assertTrue(ship.getSize() == 5);//attendre la validation du prof
-		    
-		
+		    assertTrue(nbreNavire == 5);	
 	}
 
 }
