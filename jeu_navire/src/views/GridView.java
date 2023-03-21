@@ -2,7 +2,7 @@ package views;
 
 import java.awt.*;
 import javax.swing.*;
-import model.Grid;
+// import model.Grid;
 
 public class GridView extends JPanel {
     
@@ -10,11 +10,11 @@ public class GridView extends JPanel {
     private int cols = 10;
     private int cellSize = 30;
     
-    public GridView(Grid gridModel) {
-    	rows = gridModel.getDimension().getRows();
-    	cols = gridModel.getDimension().getCols();
+    public GridView() {
+    	rows =10; //gridModel.getDimension().getRows();
+    	cols =10; //gridModel.getDimension().getCols();
     	this.setBackground(Color.WHITE);
-        setPreferredSize(new Dimension(rows * cellSize, cols * cellSize));
+        this.setPreferredSize(new Dimension(rows * cellSize, cols * cellSize));
     }
     
     public void paintComponent(Graphics g) {

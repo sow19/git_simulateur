@@ -7,30 +7,27 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
-import model.RandomPlayer;
-import model.Grid;
-import model.AbstractPlayer;
+// import model.RandomPlayer;
+// import model.Grid;
+// import model.AbstractPlayer;
 // import model.Dimension;
 
 public class RenduPlayer extends JPanel {
-	public GridView gridView;
+	public GridView gridView=new GridView();
 	public JLabel titlePlayer;
-	public AbstractPlayer palyer;
-	public RenduPlayer(AbstractPlayer player) {
+	// public AbstractPlayer palyer;
+	public RenduPlayer() {
 		super();
-		//initialisation des attribut
-		if(player instanceof RandomPlayer){
-			this.gridView = new GridView(player.getGrid());
-			this.titlePlayer = new JLabel("Aleatoir");
-		}
-		this.titlePlayer = new JLabel(player.getName());
-		this.titlePlayer.setPreferredSize(new Dimension(55,20));//definition de la taille du label
-
-		this.setPreferredSize(new Dimension(400,400));
-		this.setBorder(BorderFactory.createLineBorder(getBackground(), 1));
+		this.setLayout(new BorderLayout());
+		this.titlePlayer = new JLabel("",SwingConstants.CENTER);
+		this.titlePlayer.setPreferredSize(new Dimension(200,20));//definition de la taille du label
+	
+		this.setPreferredSize(new Dimension(600,50));
+		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 		this.add(gridView,BorderLayout.CENTER);
-		this.add(titlePlayer,BorderLayout.SOUTH);
+		this.add(this.titlePlayer,BorderLayout.SOUTH);
 	}
 
 }
