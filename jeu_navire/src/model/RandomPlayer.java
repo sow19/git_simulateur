@@ -1,7 +1,7 @@
 package model;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Random;
+import config.Config;
+
 
 /**
  * Classe représentant un joueur aléatoire du jeu de bataille navale.
@@ -46,22 +46,24 @@ public class RandomPlayer extends AbstractPlayer {
 	 * Place un navire aléatoirement sur la grille.
 	 * @param nbreNavire : le nombre de navires à ajouter
 	 */
-	public void addShipRandomLy(int nbreNavire) {
+	public void addShipRandomLy() {
 		
-		for(int i =0; i<nbreNavire;i++){
-			//Collections.shuffle(this.grid.gridPosition());
+		for(int i =0; i<Config.sizeShips.length;i++){
 			
 			for(Position position : this.getGrid().gridPosition()){
 
-				boolean added = this.addShip(position.getX(),position.getY(), new Ship(5), true); // modifier la taille du navire 
+				boolean added = this.addShip(position.getX(),position.getY(), new Ship(Config.sizeShips[i]), true); // modifier la taille du navire 
 				if (!added) {
-					added = this.addShip(position.getX(),position.getY(), new Ship(5), false);
+					added = this.addShip(position.getX(),position.getY(), new Ship(Config.sizeShips[i]), false);
 				}
-				if (added)
+				if (added){
 					break;
+				}
+					
 			}
 				
 		}
+		this.grid.afficher();
 	}
 		
 	
