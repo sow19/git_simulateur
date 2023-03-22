@@ -48,13 +48,13 @@ public class RandomPlayer extends AbstractPlayer {
 	 */
 	public void addShipRandomLy() {
 		
-		for(int i =0; i<Config.sizeShips.length;i++){
+		for(int i =0; i<Config.sizeShip.length;i++){
 			
 			for(Position position : this.getGrid().gridPosition()){
 
-				boolean added = this.addShip(position.getX(),position.getY(), new Ship(Config.sizeShips[i]), true); // modifier la taille du navire 
+				boolean added = this.addShip(position.getX(),position.getY(), new Ship(Config.sizeShip[i]), true); // modifier la taille du navire 
 				if (!added) {
-					added = this.addShip(position.getX(),position.getY(), new Ship(Config.sizeShips[i]), false);
+					added = this.addShip(position.getX(),position.getY(), new Ship(Config.sizeShip[i]), false);
 				}
 				if (added){
 					break;
@@ -67,8 +67,6 @@ public class RandomPlayer extends AbstractPlayer {
 	}
 		
 	
-
-
 	/**
     Met à jour la visibilité des navires coulés de la flotte pour les rendre visibles.
     Parcourt chaque navire de la flotte, et si le navire est coulé, définit sa visibilité à true.

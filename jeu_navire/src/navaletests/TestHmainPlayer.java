@@ -10,7 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.InputMismatchException;
 
-public class TestHmainPlayer {
+public class TestHmainPlayer  {
 	private Grid grid = new Grid(new Dimension(6,6));
 	private HumanPlayer humain = new HumanPlayer(grid, "saoudatou");
 	
