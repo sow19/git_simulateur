@@ -95,10 +95,10 @@ public class HumanPlayer  extends AbstractPlayer{
 				System.out.print("votre navire est verticale ou horizontale(ve/ho)");
 				carac = entree.nextLine();
 				}while (!carac .equals("ve") && !carac.equals("ho"));
-				//ajout du navire
+				//ajout du navire de façon verticale
 				if(carac.equals("ve")){
 					added = this.addShip(x,y, new Ship(Config.sizeShip[i]), true);
-					
+				//ajout du navire de façon horizontale	
 				}else{
 					added = this.addShip(x,y, new Ship(Config.sizeShip[i]), false);		
 				}
