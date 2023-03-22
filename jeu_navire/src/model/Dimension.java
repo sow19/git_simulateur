@@ -16,6 +16,14 @@ public class Dimension {
 		this.rows = rows;
 		this.cols = cols;
 	}
+
+	/**
+	 * constructeur sans argument */	
+	public Dimension(){
+
+	}
+
+
 	//getters et setters
 	public int getRows() {
 		return rows;

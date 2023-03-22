@@ -22,6 +22,14 @@ public abstract class AbstractPlayer {
 		this.fleet = new ArrayList<>();
 	}
 
+	/**
+	 * constructeur sans argument
+	 */
+	public AbstractPlayer(){
+		this.fleet = new ArrayList<>();
+
+	}
+
 	//getters and setters
 
 	public Grid getGrid() {

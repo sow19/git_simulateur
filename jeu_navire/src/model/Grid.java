@@ -25,6 +25,15 @@ public class Grid {
 
 	//getters et setters	
 	}
+	/**
+	 * Constructeur sans argument
+	 */
+
+	public Grid() {
+		
+	}
+
+	
 
 	public Dimension getDimension() {
 		return dimension;
