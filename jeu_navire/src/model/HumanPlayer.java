@@ -81,7 +81,7 @@ public class HumanPlayer  extends AbstractPlayer{
 
 		 // boucle pour chaque taille de navire dans le tableau Config.sizeShips
 		
-		for(int i = 0; i < Config.sizeShips.length;i++){
+		for(int i = 0; i < Config.sizeShip.length;i++){
 			 // variable booléenne pour vérifier si le navire a été ajouté à la grille
 			boolean added = false;
 			while(!added){	
@@ -97,10 +97,10 @@ public class HumanPlayer  extends AbstractPlayer{
 				}while (!carac .equals("ve") && !carac.equals("ho"));
 				//ajout du navire
 				if(carac.equals("ve")){
-					added = this.addShip(x,y, new Ship(Config.sizeShips[i]), true);
+					added = this.addShip(x,y, new Ship(Config.sizeShip[i]), true);
 					
 				}else{
-					added = this.addShip(x,y, new Ship(Config.sizeShips[i]), false);		
+					added = this.addShip(x,y, new Ship(Config.sizeShip[i]), false);		
 				}
 				if(added){
 					System.out.print("ajouté\n");
