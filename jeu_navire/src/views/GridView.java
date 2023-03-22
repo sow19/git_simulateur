@@ -5,7 +5,7 @@ import javax.swing.*;
 // import model.Grid;
 
 public class GridView extends JPanel {
-    
+    private static final long serialVersionUID = 1L;
     private int rows = 10;
     private int cols = 10;
     private int cellSize = 30;

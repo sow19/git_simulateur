@@ -32,13 +32,13 @@ public class MainGUI extends JFrame {
 		this.panelHumain.titlePlayer.setText("grille du joueur:humain");
 		this.panelRandom.titlePlayer.setText("grille du joueur:aleatoir");
 		
-		// JPanel center = new JPanel();
-		// center.setPreferredSize(new Dimension(20,0));
+		JPanel center = new JPanel();
+		center.setPreferredSize(new Dimension(20,0));
 
 		content.add(this.panelHumain,BorderLayout.WEST);
 		content.add(this.panelRandom,BorderLayout.EAST);
 		content.add(this.panelControl,BorderLayout.SOUTH);
-		// content.add(center,BorderLayout.CENTER);
+		content.add(center,BorderLayout.CENTER);
 		// this.setLayout(new BorderLayout());
 		this.setSize(screenWith,screenheight);
 		// this.pack();

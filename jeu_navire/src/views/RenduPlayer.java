@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 // import model.Dimension;
 
 public class RenduPlayer extends JPanel {
+	private static final long serialVersionUID = 1L;
 	public GridView gridView=new GridView();
 	public JLabel titlePlayer;
 	// public AbstractPlayer palyer;
