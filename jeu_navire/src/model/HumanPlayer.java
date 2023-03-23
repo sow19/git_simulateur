@@ -91,6 +91,7 @@ public HumanPlayer() {
 	
 	/**
 	 * cette méthode permet au joueur humain d'ajouter ses navires
+	 * @throws InputMismatchException si l'entrée n'est pas numérique
 	 */
 	
 	public void humainAddShip() {
