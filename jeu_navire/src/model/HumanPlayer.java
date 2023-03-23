@@ -18,6 +18,20 @@ public class HumanPlayer  extends AbstractPlayer{
 	}
 
 
+	
+
+/**
+ * constructeur sans argument
+ */
+public HumanPlayer() {
+	super();
+		
+	}
+
+
+
+
+
 /**
  * Demande à l'utilisateur de choisir une position sur le plateau
  * et retourne la position choisie sous forme d'objet Position.

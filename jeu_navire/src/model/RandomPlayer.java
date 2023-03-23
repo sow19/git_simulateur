@@ -22,6 +22,13 @@ public class RandomPlayer extends AbstractPlayer {
 		this.random = new Random();
 	}
 
+	/**
+	 * constructeur sans argument
+	 */
+	public RandomPlayer(){
+		super();
+	}
+
 	//getters and setters
 	public Random getRandom() {
 		return random;
