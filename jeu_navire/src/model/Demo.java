@@ -17,10 +17,10 @@ public class Demo {
         //random.addShipRandomLy();
      
 
-      //humain.humainAddShip();
+      humain.humainAddShip();
 
       
-      System.out.println(humain.shoot());
+      //System.out.println(humain.shoot());
 
       //game.play();
 
