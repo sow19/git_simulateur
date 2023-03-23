@@ -1,4 +1,5 @@
 package model;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import config.Config;
 
@@ -39,36 +40,41 @@ public HumanPlayer() {
  * et lève une exception si la position choisie n'est pas valide.
  * @return l'objet Position correspondant à la position choisie par l'utilisateur
  * @throws IllegalArgumentException si la position choisie n'est pas valide
+ * @throws StringIndexOutOfBoundsException si les coordonnées ne sont pas complètes
  */
-	public Position shoot(){
-		//initialisation des variables
+	public Position shoot() {
 		Scanner scanner = new Scanner(System.in);
-		String entree="";
-		int x =0, y =0;
-		
-		// Boucle tant que l'entrée n'est pas de forme A1
-		do {
-			System.out.println("Choisissez une case (ex : A1) : ");
-			entree = scanner.nextLine();
-			//verifie si l'entree est de la forme A1
-			if (entree.length() == 2 && Character.isLetter(entree.charAt(0)) && Character.isDigit(entree.charAt(1)) && Character.isUpperCase(entree.charAt(0))) {
-				x = entree.charAt(0) - 'A';
-				y = Character.getNumericValue(entree.charAt(1));
-				//lève une exception si la premiere lettre est un caractère
-			}else if (Character.isDigit(entree.charAt(0))) {
-				throw new IllegalArgumentException("La première lettre doit être une lettre majuscule");
+		String entree = "";
+		int x = 0, y = 0;
+	
+		boolean entreeValide = false;
+		while (!entreeValide) {
+			try {
+				System.out.println("Choisissez une case (ex : A1) : ");
+				entree = scanner.nextLine();
+				if (entree.length() == 2 && Character.isLetter(entree.charAt(0)) && Character.isDigit(entree.charAt(1)) && Character.isUpperCase(entree.charAt(0))) {
+					x = entree.charAt(0) - 'A';
+					y = Character.getNumericValue(entree.charAt(1));
+				}else if (entree.length()!=2) {
+					throw new StringIndexOutOfBoundsException("vous devez entrer une case (ex : A1)");
+				
+				}else if (Character.isDigit(entree.charAt(0))) {
+					throw new IllegalArgumentException("La première lettre doit être une lettre majuscule");
+				} else if (Character.isLetter(entree.charAt(1))) {
+					throw new IllegalArgumentException("La deuxième lettre doit être un entier");
+				} else {
+					System.out.println("entrée invalide");
+				}
+				entreeValide = true;
+			} catch (IllegalArgumentException e) {
+				System.out.println(e.getMessage());
+			} catch( StringIndexOutOfBoundsException e){
+				System.out.println(e.getMessage());
 
-				//lève une exception si la deuxième lettre est un caractère
-			}else if(Character.isLetter(entree.charAt(1))){
-				throw new IllegalArgumentException("La deuxième lettre doit être un entier");
-			}else{
-				System.out.println("entrée invalide");
-			} 
-			
-		} while (!(entree.length() == 2 && Character.isLetter(entree.charAt(0)) && Character.isDigit(entree.charAt(1)) && Character.isUpperCase(entree.charAt(0))));
-		
-		return new Position(x,y);
+			}
 
+		}
+		return new Position(x, y);
 	}
 
 	
@@ -85,49 +91,49 @@ public HumanPlayer() {
 	
 	/**
 	 * cette méthode permet au joueur humain d'ajouter ses navires
+	 * @throws InputMismatchException si l'entrée n'est pas numérique
 	 */
-
-	public void humainAddShip(){
-		 // création d'un objet Scanner pour lire les entrées de l'utilisateur
+	
+	public void humainAddShip() {
 		Scanner entree = new Scanner(System.in);
-		// initialisation de la variable pour stocker les caractéristiques du navire
 		String carac = "";
-
-		 // boucle pour chaque taille de navire dans le tableau Config.sizeShips
-		
-		for(int i = 0; i < Config.sizeShip.length;i++){
-			 // variable booléenne pour vérifier si le navire a été ajouté à la grille
+	
+		for (int i = 0; i < Config.sizeShip.length; i++) {
 			boolean added = false;
-			while(!added){	
-				//saisi des coordonnees
-				System.out.print("choisissez une coordonnée X  pour votre navire " +(i+1)+" ");
-				int x = entree.nextInt();
-				System.out.print("choisissez une coordonnée Y  pour votre navire  "+(i+1)+" ");
-				int y = entree.nextInt();
-				//horizontale ou verticale
-				do{		
-				System.out.print("votre navire est verticale ou horizontale(ve/ho)");
-				carac = entree.nextLine();
-				}while (!carac .equals("ve") && !carac.equals("ho"));
-				//ajout du navire de façon verticale
-				if(carac.equals("ve")){
-					added = this.addShip(x,y, new Ship(Config.sizeShip[i]), true);
-				//ajout du navire de façon horizontale	
-				}else{
-					added = this.addShip(x,y, new Ship(Config.sizeShip[i]), false);		
+			while (!added) {
+				try {
+					System.out.print("choisissez une coordonnée X  pour votre navire " + (i+1) + " ");
+					int x = entree.nextInt();
+					System.out.print("choisissez une coordonnée Y  pour votre navire  "+ (i+1) + " ");
+					int y = entree.nextInt();
+					entree.nextLine(); // consommer la ligne vide restante
+	
+					do {
+						System.out.print("votre navire est verticale ou horizontale(ve/ho)");
+						carac = entree.nextLine();
+					} while (!carac.equals("ve") && !carac.equals("ho"));
+	
+					if (carac.equals("ve")) {
+						added = this.addShip(x, y, new Ship(Config.sizeShip[i]), true);
+					} else {
+						added = this.addShip(x, y, new Ship(Config.sizeShip[i]), false);
+					}
+	
+					if (added) {
+						System.out.println("ajouté\n");
+						this.grid.afficher();
+					} else {
+						System.out.println("non ajouté\n");
+					}
+				} catch (InputMismatchException e) {
+					System.out.println("Erreur: Entrée non valide. Veuillez entrer une valeur numérique.");
+					entree.nextLine(); // consommer la ligne erronée restante
+				} catch (IllegalArgumentException e) {
+					System.out.println("Erreur: Entrée non valide. ");
 				}
-				if(added){
-					System.out.print("ajouté\n");
-					this.grid.afficher();
-				}else{
-					System.out.print("non ajouté\n");
-				}
-
 			}
-				
-			
-
-		}
-
+		}		
 	}
+
 }
+
