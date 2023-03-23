@@ -16,7 +16,7 @@ public  class ViewOneCell extends  JPanel{
         this.cellOfGrid = cell;
         this.state = state;
         this.stateOfCell(state);
-        this.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
+        this.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
         this.setPreferredSize(new Dimension(50,50));
     }
 
@@ -26,12 +26,11 @@ public  class ViewOneCell extends  JPanel{
 
     public  void stateOfCell(CellState state){
         if(state==CellState.BLANK){
-            this.setBackground(Color.BLACK);
+            this.setBackground(Color.WHITE);
         } else if(state==CellState.HIT){
             this.setBackground(Color.RED);
         } else if(state==CellState.MISSED){
-            this.setBackground(Color.BLUE);
+            this.setBackground(Color.GREEN);
         }
     }
-
 }
