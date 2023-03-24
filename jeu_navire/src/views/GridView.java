@@ -14,15 +14,20 @@ public class GridView extends JPanel {
     private int cols = 10;
     private int cellSize = 30;
     public final ViewOneCell viewOneCell;
+//    public final GridModel gridModel;
+//    public final AbstracPlayer player;
     public GridView() {
+//        this.player = player;
+
+
         this.setLayout(new BorderLayout());
         this.viewOneCell = new ViewOneCell();
     	rows =10; //gridModel.getDimension().getRows();
     	cols =10; //gridModel.getDimension().getCols();
     	this.setBackground(Color.WHITE);
         this.add(this.createGrid(),BorderLayout.CENTER);
-        this.add(this.createFleet(),BorderLayout.EAST);
-        this.setPreferredSize(new Dimension(1000, 100));
+//        this.add(this.createFleet(),BorderLayout.EAST);
+//        this.setPreferredSize(new Dimension(1000, 100));
     }
     public JPanel createFleet() {
         JPanel panel = new JPanel();
@@ -63,7 +68,7 @@ public class GridView extends JPanel {
 //                    drawRect = false;
 
                 if(drawRect) {
-                    panel.add(new ViewOneCell(new Cellule(),state));
+                    panel.add(new ViewOneCell(new Cellule()));
                 }
 
             }
