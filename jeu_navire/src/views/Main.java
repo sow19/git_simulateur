@@ -1,16 +1,18 @@
 package views;
-// import model.Dimension;
-// import model.Game;
-// import model.Grid;
-// import model.HumanPlayer;
+ import model.Dimension;
+ import model.Game;
+ import model.Grid;
+ import model.HumanPlayer;
 
 
 public class Main{
 	public static void main(String[] args){
-		// Grid grid = new Grid(new Dimension(10, 10));
-		// HumanPlayer hplayer = new HumanPlayer(grid, "Melas");
-		// Game game =  new Game(hplayer, null);
-		MainGUI gui = new MainGUI();
+		 Grid grid = new Grid(new Dimension(10, 10));
+		 HumanPlayer hplayer = new HumanPlayer(grid, "Melas");
+		 Game game =  new Game(hplayer, null);
+		MainGUI gui = new MainGUI(game);
+
+//		GridView gridView = new GridView(new Game(hplayer,null),hplayer);
 	}
 
 }

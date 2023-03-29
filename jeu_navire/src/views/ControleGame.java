@@ -12,13 +12,11 @@ import javax.swing.JScrollPane;
 // import model.Game;
 
 public class ControleGame extends JPanel {
-	// final static String WELCOME_PAGE = "WELCOME";
-	// final static String STRATEGY_PAGE = "STRATEGY";
-	
 	public JButton addShip,play,backInit;
-
-	public ControleGame() {
+	public PageManager pageManager;
+	public ControleGame(PageManager pageManager) {
 		super();
+		this.pageManager = pageManager;
 		//init attributs this class
 		this.addShip = new JButton("ajout bateau");
 		this.play = new JButton("play");
@@ -30,25 +28,6 @@ public class ControleGame extends JPanel {
 		this.add(this.play);
 		this.add(backInit);
 		JScrollPane jscp=new JScrollPane(this);
-	
-	// 	// add welcome page
-	// 	Welcome welcome = new Welcome(this);
-	// 	this.add(welcome, WELCOME_PAGE);
-		
-	// 	// add strategy page
-	// 	Strategy strategy = new Strategy(this, game.getHumainPlayer());
-	// 	this.add(strategy, STRATEGY_PAGE);
-		
-	// 	setVisible(true);
-	// }
-	
-	// public void nextPage() {
-	// 	CardLayout cl = (CardLayout) this.getLayout();
-	// 	cl.next(this);
-	// }
-	
-	// public void prev() {
-	// 	this.prev();
 	}
 	
 }

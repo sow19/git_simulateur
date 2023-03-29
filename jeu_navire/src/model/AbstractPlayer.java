@@ -1,4 +1,7 @@
 package model;
+
+import java.util.Random;
+import config.Config;
 /**
  * Classe représentant un joueur du jeu de bataille navale.
  * Un joueur possède une grille de jeu, une flotte de bateaux et un nom.
@@ -141,6 +144,30 @@ public abstract class AbstractPlayer {
 			System.out.println("j'ai perdu");
 			return true;
 		}
+
+	/**
+	 * Place un navire aléatoirement sur la grille.
+	 * @param nbreNavire : le nombre de navires à ajouter
+	 */
+	public void addShipRandomLy() {
+
+		for(int i =0; i<Config.sizeShip.length;i++){
+
+			for(Position position : this.getGrid().gridPosition()){
+
+				boolean added = this.addShip(position.getX(),position.getY(), new Ship(Config.sizeShip[i]), true); // modifier la taille du navire
+				if (!added) {
+					added = this.addShip(position.getX(),position.getY(), new Ship(Config.sizeShip[i]), false);
+				}
+				if (added){
+					break;
+				}
+
+			}
+
+		}
+		this.grid.afficher();
+	}
 	/**
 	 *  méthode abstraite permettant  au joueur de choisir la position sur laquelle il va effectuer son tir
 	 * @return la position choisit par le joueur
