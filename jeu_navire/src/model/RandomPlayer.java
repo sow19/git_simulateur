@@ -1,4 +1,5 @@
 package model;
+
 import java.util.Random;
 import config.Config;
 
@@ -47,30 +48,6 @@ public class RandomPlayer extends AbstractPlayer {
 		int x = random.nextInt(this.grid.getDimension().getRows());
         int y = random.nextInt(this.grid.getDimension().getCols());
         return new Position(x, y);
-	}
-
-	/**
-	 * Place un navire aléatoirement sur la grille.
-	 * @param nbreNavire : le nombre de navires à ajouter
-	 */
-	public void addShipRandomLy() {
-		
-		for(int i =0; i<Config.sizeShip.length;i++){
-			
-			for(Position position : this.getGrid().gridPosition()){
-
-				boolean added = this.addShip(position.getX(),position.getY(), new Ship(Config.sizeShip[i]), true); // modifier la taille du navire 
-				if (!added) {
-					added = this.addShip(position.getX(),position.getY(), new Ship(Config.sizeShip[i]), false);
-				}
-				if (added){
-					break;
-				}
-					
-			}
-				
-		}
-		this.grid.afficher();
 	}
 		
 	

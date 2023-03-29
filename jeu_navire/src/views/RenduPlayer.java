@@ -16,11 +16,16 @@ import javax.swing.SwingConstants;
 
 public class RenduPlayer extends JPanel {
 	private static final long serialVersionUID = 1L;
-	public GridView gridView=new GridView();
+	public GridView gridView;
 	public JLabel titlePlayer;
-	// public AbstractPlayer palyer;
-	public RenduPlayer() {
+	public AbstractPlayer palyer;
+	public RenduPlayer(AbstractPlayer player) {
 		super();
+
+		this.palyer=player;
+		this.gridView = new GridView(this.palyer.getGrid());
+		this.palyer.addShipRandomLy()
+
 		this.setLayout(new BorderLayout());
 		this.titlePlayer = new JLabel("",SwingConstants.CENTER);
 		this.titlePlayer.setPreferredSize(new Dimension(200,20));//definition de la taille du label

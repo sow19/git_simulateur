@@ -11,28 +11,31 @@ import javax.swing.JPanel;
 import java.util.ArrayList;
 
 import model.Ship;
+import model.Cellule;
 
 public class ViewShip extends JPanel{
     private static final long serialVersionUID = 1L;
-    public final Ship ship;
-//    public  ViewOneCell viewOneCell;
-
+    public Ship ship;
+    public  ViewOneCell [] shipCells;
+    public GridView gridView;
     public ViewShip(Ship ship) {
         this.ship = ship;
-//        this.setLayout(new GridLayout(1,this.ship.getSize()+5));
+        this.shipCells = new ViewOneCell[this.ship.getSize()];
         this.add(this.createShip(this.ship.getSize()));
-        JScrollPane scrollPane = new JScrollPane(this);
-        this.setBackground(Color.WHITE);
-        this.setEnabled(true);
-//        this.setPreferredSize(new Dimension(200,20));
+//        this.setPreferredSize(new Dimension(100, 100));
     }
-
+//    public ViewShip() {
+//        this(new Ship(this.ship.getSize()));
+//    }
     public JPanel createShip(int size) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(1,size));
-        for(int i=0;i<size;i++){
-            panel.add(new ViewOneCell());
+        JPanel ship = new JPanel();
+        for (int i = 0; i < this.ship.getSize(); i++) {
+            ViewOneCell cell = new ViewOneCell(new Cellule());
+            cell.setBackground(Color.BLUE);
+            cell.setPreferredSize(new Dimension(50, 50));
+            this.shipCells[i] = cell;
+            ship.add(this.shipCells[i]);
         }
-        return panel;
+        return ship;
     }
 }
