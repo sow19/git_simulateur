@@ -31,7 +31,7 @@ public  class ViewOneCell extends  JPanel{
             borderTop = borderValue;
             borderBottom = borderValue;
 
-            if(orientation == borderValue) {
+            if(orientation == 1) {
                 if(first) borderLeft = borderValue;
                 if(last) borderRight = borderValue;
             } else {
@@ -43,7 +43,7 @@ public  class ViewOneCell extends  JPanel{
             borderLeft = borderValue;
             borderRight = borderValue;
 
-            if(orientation == borderValue) {
+            if(orientation == 1) {
                 if(first) borderBottom = borderValue;
                 if(last) borderTop = borderValue;
             } else {

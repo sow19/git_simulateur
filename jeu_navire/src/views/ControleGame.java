@@ -26,6 +26,9 @@ public class ControleGame extends JPanel {
 	protected GridView humanGridView;
 	protected GridView randomGridView;
 
+	protected JButton randomButton;
+	protected JButton restartButton;
+
 	public ControleGame(PageManager pageManager, Game game) {
 		super();
 		this.setBackground(Color.WHITE);
@@ -54,10 +57,10 @@ public class ControleGame extends JPanel {
 		 // row 0
 		 this.gbc.gridy = 0;
 
-		 // increases components width by 10 pixels
+		 // increases components width by 150 pixels
         this.gbc.ipadx = 150;
  
-        // increases components height by 50 pixels
+        // increases components height by 150 pixels
         this.gbc.ipady = 150;
 
 		// Adding the grids
@@ -68,9 +71,36 @@ public class ControleGame extends JPanel {
  
 		// row 0
 		this.gbc.gridy = 0;
+
 		this.add(randomGridView, this.gbc);
 
 		humanAddShipRandomLy();
+
+		// column 0
+		this.gbc.gridx = 0;
+ 
+		// row 1
+		this.gbc.gridy = 1;
+
+		randomButton = new JButton("Placer navire aléatoire");
+		restartButton = new JButton("Recommencer");
+		// JPanel buttonPanel = new JPanel();
+		// buttonPanel.add(randomButton);
+		// buttonPanel.add(restartButton);
+		
+		this.gbc.insets = new Insets(0, 0, 0, 0);
+		 // increases components width by 10 pixels
+		 this.gbc.ipadx = 10;
+		 this.gbc.ipady = 10;
+		this.add(randomButton, this.gbc);
+		
+
+		// column 0
+		this.gbc.gridx = 1;
+ 
+		// row 1
+		this.gbc.gridy = 1;
+		this.add(restartButton, this.gbc);
 
 		this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
 	}
