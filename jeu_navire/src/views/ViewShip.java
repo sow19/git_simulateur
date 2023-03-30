@@ -15,27 +15,54 @@ import model.Cellule;
 
 public class ViewShip extends JPanel{
     private static final long serialVersionUID = 1L;
-    public Ship ship;
-    public  ViewOneCell [] shipCells;
-    public GridView gridView;
-    public ViewShip(Ship ship) {
+    protected Ship ship;
+    protected  ViewOneCell [] shipCellViews;
+    protected GridView parentGridView;
+
+    public ViewShip(Ship ship, GridView parentGridView) {
         this.ship = ship;
-        this.shipCells = new ViewOneCell[this.ship.getSize()];
-        this.add(this.createShip(this.ship.getSize()));
-//        this.setPreferredSize(new Dimension(100, 100));
+        this.parentGridView = parentGridView;
+        createShip();
     }
-//    public ViewShip() {
-//        this(new Ship(this.ship.getSize()));
-//    }
-    public JPanel createShip(int size) {
-        JPanel ship = new JPanel();
-        for (int i = 0; i < this.ship.getSize(); i++) {
-            ViewOneCell cell = new ViewOneCell(new Cellule());
-            cell.setBackground(Color.BLUE);
-            cell.setPreferredSize(new Dimension(50, 50));
-            this.shipCells[i] = cell;
-            ship.add(this.shipCells[i]);
+
+    public void createShip() {
+        int index = 0;
+        ArrayList<Cellule> shipCells = ship.getShipCell();
+        boolean horizontalShip = true;
+        int orientation = 1; // 1 if ship is oriented top or right, -1 if bottom or left
+        String cellString = "[";
+
+        for(Cellule cell:shipCells) {
+            int x = cell.getPosition().getX();
+            int y = cell.getPosition().getY();
+
+            cellString += "("+x+","+y+"), ";
+
+            ViewOneCell viewCell = this.parentGridView.getBoardView()[x][y];
+            
+            if(index < (shipCells.size() - 1)) {
+                Cellule nextCell = shipCells.get(index+1);
+                if(index == 0) {
+                    horizontalShip = nextCell.getPosition().getX() == cell.getPosition().getX();
+
+                    if(horizontalShip) {
+                        orientation = nextCell.getPosition().getX() > cell.getPosition().getX() ? 1 : -1;
+                    } else {
+                        orientation = nextCell.getPosition().getY() < cell.getPosition().getY() ? 1 : -1;
+                    }
+                }
+            }
+
+
+            boolean first = (index == 0);
+            boolean last = (index == (shipCells.size()-1));
+
+            viewCell.assignToShip(horizontalShip, orientation, last, first);
+            
+            index++;
         }
-        return ship;
+
+        cellString += "]";
+        System.out.println(cellString);
     }
 }

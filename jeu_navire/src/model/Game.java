@@ -90,6 +90,11 @@ public class Game {
 		this.currentPlayer = adversaire;
 	}
 
+	public void humanAddShipRandomLy() {
+		System.out.println("Human");
+		this.humainPlayer.addShipRandomLy();
+	}
+
 	/**
     * Joue une partie complète de bataille navale entre les deux joueurs.
     * Tant que la partie n'est pas terminée, le joueur en cours demande une position

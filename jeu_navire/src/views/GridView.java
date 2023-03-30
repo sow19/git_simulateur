@@ -15,30 +15,60 @@ public class GridView extends JPanel {
     public int cols = 10;
     private int cellSize = 30;
     public Game game;
-    public ViewOneCell[][] grid;
-   public  Grid gridModel;
-//    public final AbstracPlayer player;
+    public ViewOneCell[][] boardView;
+    public Grid gridModel;
+    protected GridBagConstraints gbc;
+
     public GridView(Grid gridModel) {
+        super();
+        this.setBackground(Color.WHITE);
         this.gridModel = gridModel;
-//        this.game=game;
-        //initialisation de la grille et des attributs
-    	this.rows =this.gridModel.getDimension().getRows();
-    	this.cols =this.gridModel.getDimension().getCols();
-        this.grid = new ViewOneCell[this.rows][this.cols];
-//    	this.setBackground(Color.BLACK);
-        this.add(this.createGrid(),BorderLayout.CENTER);
-        this.setPreferredSize(new Dimension(100, 100));
-        this.setVisible(true);
+
+        // initialisation de la grille et des attributs
+        this.rows = this.gridModel.getDimension().getRows();
+        this.cols = this.gridModel.getDimension().getCols();
+        this.boardView = new ViewOneCell[this.rows][this.cols];
+        // this.add(this.createGrid(),BorderLayout.CENTER);
+        //this.setSize(new Dimension(6000,1000));
+
+        // Setting the layout
+        this.setLayout(new GridBagLayout());
+
+        // creates a constraints object
+        this.gbc = new GridBagConstraints();
+
+        // natural height, maximum width
+        this.gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        createGrid();
+
+        //this.setVisible(true);
+
+        this.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
     }
-    public JPanel createGrid() {
-        JPanel grid = new JPanel();
-        grid.setLayout(new GridLayout(this.rows, this.cols));
+
+    public void createGrid() {
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.cols; j++) {
-                this.grid[i][j] = new ViewOneCell(this.gridModel.getBoard()[i][j]);
-                grid.add(this.grid[i][j]);
+                // row i
+                this.gbc.gridx = j;
+
+                // col j
+                this.gbc.gridy = i;
+
+                this.boardView[i][j] = new ViewOneCell(this.gridModel.getBoard()[i][j]);
+                this.add(this.boardView[i][j], this.gbc);
             }
         }
-        return grid;
     }
+
+    public ViewOneCell[][] getBoardView() {
+        return boardView;
+    }
+
+    public void setBoardView(ViewOneCell[][] boardView) {
+        this.boardView = boardView;
+    }
+
+    
 }

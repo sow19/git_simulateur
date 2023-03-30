@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import model.AbstractPlayer;
+
 // import model.RandomPlayer;
 // import model.Grid;
 // import model.AbstractPlayer;
@@ -21,10 +23,11 @@ public class RenduPlayer extends JPanel {
 	public AbstractPlayer palyer;
 	public RenduPlayer(AbstractPlayer player) {
 		super();
+		this.setBackground(Color.WHITE);
 
 		this.palyer=player;
 		this.gridView = new GridView(this.palyer.getGrid());
-		this.palyer.addShipRandomLy()
+		this.palyer.addShipRandomLy();
 
 		this.setLayout(new BorderLayout());
 		this.titlePlayer = new JLabel("",SwingConstants.CENTER);

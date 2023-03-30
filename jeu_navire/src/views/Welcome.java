@@ -33,20 +33,18 @@ import model.Ship;
 public class Welcome extends JPanel {
 	PageManager pageManager;
 	JButton startButton,addShip;
-//	JLabel welcomeLabel;
 	public GridView gridView;
-//	public ViewShip viewShip;
-	public Game game;
+
 	
-	public Welcome(PageManager pageManager,Game game) {
+	public Welcome(PageManager pageManager) {
 		super();
-		this.game = game;
 		this.pageManager = pageManager;
-		this.gridView = new GridView(this.game.getCurrentPlayer().getGrid());
 		this.setPreferredSize(new java.awt.Dimension(FrameSize.HEAD_WIDTH, FrameSize.HEAD_HEIGHT));
 		
 		// set layout
 		setLayout(new BorderLayout());
+
+		this.setBackground(Color.white);
 		// Create components
 	    startButton = new JButton("Commencer");
 		startButton.setFont(new Font("Arial", Font.BOLD, 20));
@@ -57,10 +55,9 @@ public class Welcome extends JPanel {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(startButton);
 		buttonPanel.add(addShip);
-		 JScrollPane scrollPane = new JScrollPane(buttonPanel);
+		JScrollPane scrollPane = new JScrollPane(buttonPanel);
 
 		// Add components to panel
-	     this.add(gridView, BorderLayout.CENTER);
 	     this.add(scrollPane, BorderLayout.SOUTH);
 	     
 		 setVisible(true);
@@ -91,14 +88,14 @@ public class Welcome extends JPanel {
 		pageManager.nextPage();
 	}
 
-	public ArrayList<Ship> addShipButtonClicked() {
+	/*public ArrayList<Ship> addShipButtonClicked() {
 		game.getCurrentPlayer().getFleet().add(new Ship(3));
 		game.getCurrentPlayer().getFleet().add(new Ship(3));
 		game.getCurrentPlayer().getFleet().add(new Ship(2));
 		game.getCurrentPlayer().getFleet().add(new Ship(4));
 		game.getCurrentPlayer().getFleet().add(new Ship(5));
 		return game.getCurrentPlayer().getFleet();
-	}
+	}*/
 	
 	
 //	@Override
@@ -124,7 +121,7 @@ public class Welcome extends JPanel {
 	 * @return  true si le navire peut être placé à la position donnée, false sinon
 	 */
 	public boolean isPlaceable(int x, int y, ViewShip shipView, String estVertical){
-			this.game.getCurrentPlayer().isPlaceable(x, y, shipView.ship, true);
+			//this.game.getCurrentPlayer().isPlaceable(x, y, shipView.ship, true);
 		// si on veut ajouter le navire de façon horizontale
 		if (!estVertical.equals("vertical")) {
 

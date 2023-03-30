@@ -19,7 +19,7 @@ public class Grid {
 		this.board = new Cellule[dimension.getRows()][dimension.getCols()];
 		for(int i=0;i<this.dimension.getRows();i++){
 			for(int j=0; j< this.dimension.getCols();j++){
-				this.board[i][j] = new Cellule();
+				this.board[i][j] = new Cellule(new Position(i, j));
 			} 
 		}
 

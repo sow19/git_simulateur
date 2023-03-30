@@ -1,16 +1,12 @@
 package views;
 
 import java.awt.BorderLayout;
-//import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import model.Dimension;
 import model.Game;
-import model.Grid;
-import model.HumanPlayer;
+
 
 public class MainGUI extends JFrame {
 	private static final long serialVersionUID = 7376825297884956163L;
@@ -22,7 +18,7 @@ public class MainGUI extends JFrame {
 	public Game game;
 	public MainGUI(Game game) {
 		this.game = game;
-		this.pageManager = new PageManager(this.game);
+		this.pageManager = new PageManager(game);
 		// Add pages
 		this.setLayout(new BorderLayout());
 		this.add(pageManager,BorderLayout.CENTER);
