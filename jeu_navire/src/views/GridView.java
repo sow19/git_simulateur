@@ -9,7 +9,7 @@ import model.Grid;
 import util.ListeningModel;
 
 public class GridView extends JPanel implements ListeningModel {
-    // private static final long serialVersionUID = 1L;
+    // private static final long JLabel = 1L;
     protected int rows = 10;
     protected int cols = 10;
     protected Game game;
@@ -49,7 +49,7 @@ public class GridView extends JPanel implements ListeningModel {
         this.gbc.gridy = 0;
         this.gbc.gridwidth = 10;
 
-        JTextField gridLabelField = new JTextField(gridLabel);
+        JLabel gridLabelField = new JLabel(gridLabel);
         gridLabelField.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         this.add(gridLabelField, this.gbc);
 
