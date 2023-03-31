@@ -85,32 +85,10 @@ public class ControleGame extends JPanel implements ListeningModel {
 		// Add ships for each player
 		
 		humanAddShipRandomLy();
-		humanAddShipRandomLy();
-		humanAddShipRandomLy();
-		humanAddShipRandomLy();
-		humanAddShipRandomLy();
-		humanAddShipRandomLy();
-		humanAddShipRandomLy();
-		humanAddShipRandomLy();
 		//humanAddShipRandomLy();
 
 		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
-		randomAddShip();
+
 
 		// column 0
 		this.gbc.gridx = 0;
@@ -158,7 +136,7 @@ public class ControleGame extends JPanel implements ListeningModel {
 		ArrayList<Ship> fleet = this.game.getRandomPlayer().getFleet();
 
 		for(Ship ship:fleet) { // @todo: do we need this ?
-			viewShipsRandom.add(new ViewShip(ship, this.randomGridView, true));
+			viewShipsRandom.add(new ViewShip(ship, this.randomGridView, false));
 		}
 
 	}
