@@ -46,9 +46,9 @@ public class ViewShip extends JPanel{
                     horizontalShip = nextCell.getPosition().getX() == cell.getPosition().getX();
 
                     if(horizontalShip) {
-                        orientation = nextCell.getPosition().getX() > cell.getPosition().getX() ? 1 : -1;
+                        orientation = nextCell.getPosition().getY() > cell.getPosition().getY() ? 1 : -1;
                     } else {
-                        orientation = nextCell.getPosition().getY() < cell.getPosition().getY() ? 1 : -1;
+                        orientation = nextCell.getPosition().getX() < cell.getPosition().getX() ? 1 : -1;
                     }
                 }
             }
