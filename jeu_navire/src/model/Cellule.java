@@ -1,9 +1,12 @@
 package model;
+
+import util.AbstractListenableModel;
+
 /**
  * classe representant une cellule de la grille d'un joueur
  */
 
-public class Cellule {
+public class Cellule extends AbstractListenableModel {
 	private Position position;
 	private CellState state;
 	private boolean isAssignedShip;

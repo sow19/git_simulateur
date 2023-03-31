@@ -3,8 +3,12 @@ package util;
 import java.util.ArrayList;
 
 public abstract class AbstractListenableModel implements ListenableModel {
-	private ArrayList<ListeningModel > ecouteurs;
+	private ArrayList<ListeningModel> ecouteurs;
 	
+	public AbstractListenableModel() {
+		super();
+		this.ecouteurs = new ArrayList<ListeningModel>();
+	}
 	@Override
 	public void addListening(ListeningModel  e) {
 		this.ecouteurs.add(e);
@@ -16,6 +20,7 @@ public abstract class AbstractListenableModel implements ListenableModel {
 		
 	}
 	protected void fireChangement() {
+		System.out.println("ecouiteurs" + ecouteurs.size());
 		for(ListeningModel  e : ecouteurs) {
 			e.modeleMIsAJour(this);
 		}

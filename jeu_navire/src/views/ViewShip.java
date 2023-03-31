@@ -1,28 +1,45 @@
-package  views;
+package views;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JScrollPane;
 
-
 import javax.swing.JPanel;
 
 import java.util.ArrayList;
 
 import model.Ship;
+import util.ListeningModel;
 import model.Cellule;
 
-public class ViewShip extends JPanel{
-    private static final long serialVersionUID = 1L;
+public class ViewShip extends JPanel implements ListeningModel {
+    // private static final long serialVersionUID = 1L;
     protected Ship ship;
-    protected  ViewOneCell [] shipCellViews;
+    protected ViewOneCell[] shipCellViews;
     protected GridView parentGridView;
+    protected boolean defaultShow;
 
-    public ViewShip(Ship ship, GridView parentGridView) {
+    public ViewShip(Ship ship, GridView parentGridView, Boolean defaultShow) {
         this.ship = ship;
+        this.ship.addListening(this);
+        
         this.parentGridView = parentGridView;
+        this.defaultShow = defaultShow;
+
         createShip();
+
+        if(!defaultShow) {
+            this.setVisibility(false);
+        }
+        
+    }
+
+    private ViewOneCell getViewCell(Cellule cell) {
+        int x = cell.getPosition().getX();
+        int y = cell.getPosition().getY();
+
+        return this.parentGridView.getBoardView()[x][y];
     }
 
     public void createShip() {
@@ -32,20 +49,17 @@ public class ViewShip extends JPanel{
         int orientation = 1; // 1 if ship is oriented top or right, -1 if bottom or left
         String cellString = "[";
 
-        for(Cellule cell:shipCells) {
-            int x = cell.getPosition().getX();
-            int y = cell.getPosition().getY();
+        for (Cellule cell : shipCells) {
+            cellString += "("+cell.getPosition().getX()+","+cell.getPosition().getY()+"), ";
 
-            cellString += "("+x+","+y+"), ";
+            ViewOneCell viewCell = this.getViewCell(cell);
 
-            ViewOneCell viewCell = this.parentGridView.getBoardView()[x][y];
-            
-            if(index < (shipCells.size() - 1)) {
-                Cellule nextCell = shipCells.get(index+1);
-                if(index == 0) {
+            if (index < (shipCells.size() - 1)) {
+                Cellule nextCell = shipCells.get(index + 1);
+                if (index == 0) {
                     horizontalShip = nextCell.getPosition().getX() == cell.getPosition().getX();
 
-                    if(horizontalShip) {
+                    if (horizontalShip) {
                         orientation = nextCell.getPosition().getY() > cell.getPosition().getY() ? 1 : -1;
                     } else {
                         orientation = nextCell.getPosition().getX() < cell.getPosition().getX() ? 1 : -1;
@@ -53,16 +67,48 @@ public class ViewShip extends JPanel{
                 }
             }
 
-
             boolean first = (index == 0);
-            boolean last = (index == (shipCells.size()-1));
+            boolean last = (index == (shipCells.size() - 1));
 
             viewCell.assignToShip(horizontalShip, orientation, last, first);
-            
+
             index++;
         }
 
         cellString += "]";
         System.out.println(cellString);
+    }
+
+    public void destroyShip() {
+        this.setVisibility(false);
+    }
+
+    public void setVisibility(boolean show) {
+        ArrayList<Cellule> shipCells = ship.getShipCell();
+        int count = 0;
+        if (show) {
+            for (Cellule cell : shipCells) {
+                ViewOneCell viewCell = this.getViewCell(cell);
+                viewCell.showBorder();
+            }
+        } else {
+            for (Cellule cell : shipCells) {
+                ViewOneCell viewCell = this.getViewCell(cell);
+                viewCell.setDefaultColor();
+                count++;
+            }
+            
+        }
+
+       System.out.println("count: " + count);
+    }
+
+    @Override
+    public void modeleMIsAJour(Object source) {
+        // Support destroyed ship
+        if(this.ship.isDestroyed()){
+            System.out.println("vue: Ship destroyed");
+            this.destroyShip();
+        }
     }
 }

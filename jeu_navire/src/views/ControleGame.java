@@ -17,8 +17,9 @@ import javax.swing.JScrollPane;
 
 import model.Game;
 import model.Ship;
+import util.ListeningModel;
 
-public class ControleGame extends JPanel {
+public class ControleGame extends JPanel implements ListeningModel {
 	protected PageManager pageManager;
 	protected GridBagConstraints gbc;
 	protected Game game;
@@ -31,16 +32,20 @@ public class ControleGame extends JPanel {
 	protected JButton playButton;
 	protected JButton restartButton;
 
+	protected ArrayList<ViewShip> viewShipsHuman = new ArrayList<ViewShip>();
+	protected ArrayList<ViewShip> viewShipsRandom = new ArrayList<ViewShip>();
+
 	public ControleGame(PageManager pageManager, Game game) {
 		super();
 		this.setBackground(Color.WHITE);
 		this.pageManager = pageManager;
 		this.game = game;
+		this.game.addListening(this);
 
 
 		// Creating the grids
-		humanGridView = new GridView(game.getHumainPlayer().getGrid());
-		randomGridView = new GridView(game.getRandomPlayer().getGrid());
+		humanGridView = new GridView(game.getHumainPlayer().getGrid(), "Moi");
+		randomGridView = new GridView(game.getRandomPlayer().getGrid(), "Jouer aléatoire");
 
 		// Setting the layout
 		this.setLayout(new GridBagLayout());
@@ -77,7 +82,35 @@ public class ControleGame extends JPanel {
 
 		this.add(randomGridView, this.gbc);
 
+		// Add ships for each player
+		
 		humanAddShipRandomLy();
+		humanAddShipRandomLy();
+		humanAddShipRandomLy();
+		humanAddShipRandomLy();
+		humanAddShipRandomLy();
+		humanAddShipRandomLy();
+		humanAddShipRandomLy();
+		humanAddShipRandomLy();
+		//humanAddShipRandomLy();
+
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
+		randomAddShip();
 
 		// column 0
 		this.gbc.gridx = 0;
@@ -88,7 +121,7 @@ public class ControleGame extends JPanel {
 
 		buttonPanel = new JPanel();
 		buttonPanel.setBackground(Color.WHITE);
-		randomButton = new JButton("Placer navire aléatoire");
+		randomButton = new JButton("Placer mes navires");
 		playButton = new JButton("Jouer");
 		restartButton = new JButton("Recommencer");
 		buttonPanel.add(randomButton);
@@ -104,14 +137,36 @@ public class ControleGame extends JPanel {
 	public void humanAddShipRandomLy() {
 		// Add ships randomly on the model
 		this.game.humanAddShipRandomLy();
-
+		
 		// Assign a view for each ship
 		ArrayList<Ship> fleet = this.game.getHumainPlayer().getFleet();
 
-		for(Ship ship:fleet) {
-			new ViewShip(ship, this.humanGridView);
+		for(Ship ship:fleet) { // @todo: do we need this ?
+
+			new ViewShip(ship, this.humanGridView, true);
+			//viewShipsHuman.add(new ViewShip(ship, this.humanGridView, true));
 		}
 
+	}
+
+	public void randomAddShip() {
+
+		// Add ships randomly on the model
+		this.game.randomAddShip();
+		
+		// Assign a view for each ship
+		ArrayList<Ship> fleet = this.game.getRandomPlayer().getFleet();
+
+		for(Ship ship:fleet) { // @todo: do we need this ?
+			viewShipsRandom.add(new ViewShip(ship, this.randomGridView, true));
+		}
+
+	}
+
+	@Override
+	public void modeleMIsAJour(Object source) {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'modeleMIsAJour'");
 	}
 	
 }

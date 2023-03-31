@@ -1,13 +1,16 @@
 package model;
 
 import java.util.ArrayList;
+
+import util.AbstractListenableModel;
 /**
  * classe représentant un navire
 */
-public class Ship {
+public class Ship extends AbstractListenableModel {
 	private ArrayList<Cellule> shipCell;
 	private boolean visible;
 	private int size;
+	protected boolean isDestroyed = false;
 
 	/**
 	 * Constructeur de la classe initialise un ship avec une liste de cellule vide, un etat visible false et une taille du navire
@@ -23,6 +26,16 @@ public class Ship {
 
 	public ArrayList<Cellule> getShipCell() {
 		return shipCell;
+	}
+
+	public void destroy() {
+		System.out.println("model: Ship destroyed " + shipCell.size());
+		// Free ship cell
+		for(Cellule cell: shipCell) {
+			cell.setAssignedShip(false);
+		}
+		this.isDestroyed = true;
+		this.fireChangement();
 	}
 
 	public void setShipCell(ArrayList<Cellule> shipCell) {
@@ -56,6 +69,14 @@ public class Ship {
 			}
 		}
 		return true;
+	}
+
+	public boolean isDestroyed() {
+		return isDestroyed;
+	}
+
+	public void setDestroyed(boolean isDestroyed) {
+		this.isDestroyed = isDestroyed;
 	}	
 	
 }

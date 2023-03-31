@@ -4,25 +4,28 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.Color;
 
-import model.Cellule;
 import model.Game;
-import model.AbstractPlayer;
 import model.Grid;
+import util.ListeningModel;
 
-public class GridView extends JPanel {
-    private static final long serialVersionUID = 1L;
-    public int rows = 10;
-    public int cols = 10;
-    private int cellSize = 30;
-    public Game game;
-    public ViewOneCell[][] boardView;
-    public Grid gridModel;
+public class GridView extends JPanel implements ListeningModel {
+    // private static final long serialVersionUID = 1L;
+    protected int rows = 10;
+    protected int cols = 10;
+    protected Game game;
+    protected ViewOneCell[][] boardView;
+    protected Grid gridModel;
     protected GridBagConstraints gbc;
+    protected String gridLabel = "Joueur";
 
-    public GridView(Grid gridModel) {
+    public GridView(Grid gridModel, String gridLabel) {
         super();
         this.setBackground(Color.WHITE);
+
         this.gridModel = gridModel;
+        this.gridModel.addListening(this);
+
+        this.gridLabel = gridLabel;
 
         // initialisation de la grille et des attributs
         this.rows = this.gridModel.getDimension().getRows();
@@ -46,7 +49,9 @@ public class GridView extends JPanel {
         this.gbc.gridy = 0;
         this.gbc.gridwidth = 10;
 
-        this.add(new JTextField("Jouer humain"), this.gbc);
+        JTextField gridLabelField = new JTextField(gridLabel);
+        gridLabelField.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        this.add(gridLabelField, this.gbc);
 
         this.gbc.gridwidth = 1;
         this.gbc.ipadx = 30;
@@ -81,6 +86,12 @@ public class GridView extends JPanel {
 
     public void setBoardView(ViewOneCell[][] boardView) {
         this.boardView = boardView;
+    }
+
+    @Override
+    public void modeleMIsAJour(Object source) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'modeleMIsAJour'");
     }
 
     

@@ -1,12 +1,15 @@
 package model;
 import java.util.ArrayList;
 import java.util.List;
+
+import util.AbstractListenableModel;
+
 import java.util.Collections;
 /**
  * cette classe représente la grille d'un joueur
  */
 
-public class Grid {
+public class Grid extends AbstractListenableModel {
 	private Dimension dimension;
 	private Cellule [][] board;
 

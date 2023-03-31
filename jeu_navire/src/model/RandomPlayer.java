@@ -21,7 +21,7 @@ public class RandomPlayer extends AbstractPlayer {
 	public RandomPlayer(Grid grid) {
 		super(grid, "Random");
 		this.random = new Random();
-		this.addShipRandomLy();
+		//this.addShipRandomLy();
 	}
 
 	/**

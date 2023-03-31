@@ -2,13 +2,15 @@ package model;
 
 import java.util.Random;
 import config.Config;
+import util.AbstractListenableModel;
+
 /**
  * Classe représentant un joueur du jeu de bataille navale.
  * Un joueur possède une grille de jeu, une flotte de bateaux et un nom.
  */
 import java.util.ArrayList;
 
-public abstract class AbstractPlayer {
+public abstract class AbstractPlayer extends AbstractListenableModel {
 	protected Grid grid;
 	protected String name;
 	protected ArrayList<Ship> fleet;
@@ -57,6 +59,16 @@ public abstract class AbstractPlayer {
 
 	public void setFleet(ArrayList<Ship> fleet) {
 		this.fleet = fleet;
+	}
+
+	public void resetFleet() {
+		System.out.println("================= Fleet size =================" + fleet.size());
+		//Thread.dumpStack();
+		for(Ship ship: fleet) {
+			ship.destroy();
+		}
+		this.fleet = null ;
+		this.fleet = new ArrayList<>() ;
 	}
 
 	/**
@@ -149,7 +161,8 @@ public abstract class AbstractPlayer {
 	 * Place un navire aléatoirement sur la grille.
 	 * @param nbreNavire : le nombre de navires à ajouter
 	 */
-	public void addShipRandomLy() {
+	public void addShipRandomLy() {	
+		this.resetFleet();
 
 		for(int i =0; i<Config.sizeShip.length;i++){
 
@@ -166,7 +179,7 @@ public abstract class AbstractPlayer {
 			}
 
 		}
-		this.grid.afficher();
+		//this.grid.afficher();
 	}
 	/**
 	 *  méthode abstraite permettant  au joueur de choisir la position sur laquelle il va effectuer son tir

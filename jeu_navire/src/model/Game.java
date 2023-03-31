@@ -1,9 +1,12 @@
 package model;
+
+import util.AbstractListenableModel;
+
 /**
  * cette classe représente le jeu,elle contient toutes les méthodes utilisées pour faire tourner le jeu
  */
 
-public class Game {
+public class Game extends AbstractListenableModel {
 	private HumanPlayer humainPlayer;
 	private RandomPlayer randomPlayer;
 	private AbstractPlayer currentPlayer;
@@ -91,9 +94,14 @@ public class Game {
 	}
 
 	public void humanAddShipRandomLy() {
-		System.out.println("Human");
 		this.humainPlayer.addShipRandomLy();
 	}
+
+
+	public void randomAddShip() {
+		this.randomPlayer.addShipRandomLy();
+	}
+
 
 	/**
     * Joue une partie complète de bataille navale entre les deux joueurs.
