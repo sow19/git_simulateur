@@ -38,13 +38,26 @@ public class GridView extends JPanel {
         this.gbc = new GridBagConstraints();
 
         // natural height, maximum width
-        this.gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.gbc.fill = GridBagConstraints.BOTH;
 
+        this.gbc.gridx = 0;
+
+        // col j
+        this.gbc.gridy = 0;
+        this.gbc.gridwidth = 10;
+
+        this.add(new JTextField("Jouer humain"), this.gbc);
+
+        this.gbc.gridwidth = 1;
+        this.gbc.ipadx = 30;
+        this.gbc.ipady = 30;
+        this.gbc.weightx = 0;
+        this.gbc.weighty = 0;
         createGrid();
 
         //this.setVisible(true);
 
-        this.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+        //this.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
     }
 
     public void createGrid() {
@@ -54,7 +67,7 @@ public class GridView extends JPanel {
                 this.gbc.gridx = j;
 
                 // col j
-                this.gbc.gridy = i;
+                this.gbc.gridy = i + 1;
 
                 this.boardView[i][j] = new ViewOneCell(this.gridModel.getBoard()[i][j]);
                 this.add(this.boardView[i][j], this.gbc);

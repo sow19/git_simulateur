@@ -26,7 +26,9 @@ public class ControleGame extends JPanel {
 	protected GridView humanGridView;
 	protected GridView randomGridView;
 
+	JPanel buttonPanel;
 	protected JButton randomButton;
+	protected JButton playButton;
 	protected JButton restartButton;
 
 	public ControleGame(PageManager pageManager, Game game) {
@@ -47,7 +49,7 @@ public class ControleGame extends JPanel {
 		this.gbc = new GridBagConstraints();
 
 		// natural height, maximum width
-        //this.gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.gbc.fill = GridBagConstraints.HORIZONTAL;
 
 		this.gbc.insets = new Insets(10, 0, 0, 0);
 
@@ -58,10 +60,10 @@ public class ControleGame extends JPanel {
 		 this.gbc.gridy = 0;
 
 		 // increases components width by 150 pixels
-        this.gbc.ipadx = 150;
+        //this.gbc.ipadx = 50;
  
         // increases components height by 150 pixels
-        this.gbc.ipady = 150;
+        //this.gbc.ipady = 50;
 
 		// Adding the grids
 		this.add(humanGridView, this.gbc);
@@ -71,6 +73,7 @@ public class ControleGame extends JPanel {
  
 		// row 0
 		this.gbc.gridy = 0;
+		this.gbc.weightx = 1;
 
 		this.add(randomGridView, this.gbc);
 
@@ -81,28 +84,21 @@ public class ControleGame extends JPanel {
  
 		// row 1
 		this.gbc.gridy = 1;
+		this.gbc.insets = new Insets(80,0,0,0);
 
+		buttonPanel = new JPanel();
+		buttonPanel.setBackground(Color.WHITE);
 		randomButton = new JButton("Placer navire aléatoire");
+		playButton = new JButton("Jouer");
 		restartButton = new JButton("Recommencer");
-		// JPanel buttonPanel = new JPanel();
-		// buttonPanel.add(randomButton);
-		// buttonPanel.add(restartButton);
-		
-		this.gbc.insets = new Insets(0, 0, 0, 0);
-		 // increases components width by 10 pixels
-		 this.gbc.ipadx = 10;
-		 this.gbc.ipady = 10;
-		this.add(randomButton, this.gbc);
-		
+		buttonPanel.add(randomButton);
+		buttonPanel.add(playButton);
+		buttonPanel.add(restartButton);
+	
 
-		// column 0
-		this.gbc.gridx = 1;
- 
-		// row 1
-		this.gbc.gridy = 1;
-		this.add(restartButton, this.gbc);
-
-		this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
+		this.add(buttonPanel, this.gbc);
+		
+		//this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 1));
 	}
 
 	public void humanAddShipRandomLy() {
