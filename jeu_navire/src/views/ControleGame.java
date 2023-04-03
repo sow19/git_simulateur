@@ -47,8 +47,8 @@ public class ControleGame extends JPanel implements ListeningModel {
 		this.game.addListening(this);
 
 		// Creating the grids
-		humanGridView = new GridView(game.getHumainPlayer().getGrid(), "Moi");
-		randomGridView = new GridView(game.getRandomPlayer().getGrid(), "Jouer aléatoire");
+		humanGridView = new GridView(game.getHumainPlayer().getGrid(), "Moi", true);
+		randomGridView = new GridView(game.getRandomPlayer().getGrid(), "Jouer aléatoire", false);
 
 		// Setting the layout
 		this.setLayout(new GridBagLayout());

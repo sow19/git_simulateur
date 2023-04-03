@@ -1,13 +1,21 @@
 package views;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.Color;
+import java.awt.Container;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.text.Position;
 
 import model.CellState;
 import model.Cellule;
+import model.Game;
+import model.Grid;
 import util.ListeningModel;
 import util.notifications.CellNotification;
 
@@ -31,6 +39,9 @@ public class ViewOneCell extends JPanel implements ListeningModel {
 
         this.setBorder(BorderFactory.createLineBorder(defaultColor, 1));
         this.setPreferredSize(new Dimension(50, 50));
+
+        manageEvent();
+
     }
 
     public void setDefaultColor() {
@@ -84,6 +95,32 @@ public class ViewOneCell extends JPanel implements ListeningModel {
                 new Color(148, 39, 191)));
     }
 
+    public void cellClicked() { 
+        // Manage click event only on random player grid cells, human cannot hit himself
+        Container parent = this.getParent();
+        if(parent instanceof GridView) {
+            GridView gridViewparent = (GridView) parent;
+            
+            if(!gridViewparent.isHumanGrid()) {
+                 // Get game model from grand-parent component
+                ControleGame grandParent = (ControleGame) gridViewparent.getParent();
+                Game game = grandParent.game;
+
+                // @todo: should we make sure human is the current player ?
+                game.setCurrentPlayer(game.getHumainPlayer());
+                game.shootGridAdversaire(cellOfGrid.getPosition());
+
+                // make the random player shoot 
+                game.shootGridAdversaire(game.getRandomPlayer().shoot());
+            }
+        } else {
+            System.out.println("DEBUG: CELL HAVE NOT PARENT GRID");
+        }
+        
+
+       
+    }
+
     public void handleStateChanged() {
         if (cellOfGrid.getState() == CellState.BLANK) {
             this.setBackground(Color.WHITE);
@@ -94,6 +131,7 @@ public class ViewOneCell extends JPanel implements ListeningModel {
         }
     }
 
+
     @Override
     public void modeleMIsAJour(Object source, Object notification) {
         if (notification instanceof CellNotification) {
@@ -103,6 +141,14 @@ public class ViewOneCell extends JPanel implements ListeningModel {
         } else {
             System.out.println("Unhandled notification for ViewOneCell:  " + notification);
         }
+    }
+
+    public void manageEvent() {
+        this.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                cellClicked();
+            }
+        });
     }
 
 }

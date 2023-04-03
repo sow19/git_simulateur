@@ -18,8 +18,9 @@ public class GridView extends JPanel implements ListeningModel {
     protected Grid gridModel;
     protected GridBagConstraints gbc;
     protected String gridLabel = "Joueur";
+    protected boolean isHumanGrid;
 
-    public GridView(Grid gridModel, String gridLabel) {
+    public GridView(Grid gridModel, String gridLabel, boolean isHumanGrid) {
         super();
         this.setBackground(Color.WHITE);
 
@@ -27,6 +28,7 @@ public class GridView extends JPanel implements ListeningModel {
         this.gridModel.addListening(this);
 
         this.gridLabel = gridLabel;
+        this.isHumanGrid = isHumanGrid;
 
         // initialisation de la grille et des attributs
         this.rows = this.gridModel.getDimension().getRows();
@@ -64,6 +66,14 @@ public class GridView extends JPanel implements ListeningModel {
         //this.setVisible(true);
 
         //this.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+    }
+
+    public boolean isHumanGrid() {
+        return isHumanGrid;
+    }
+
+    public void setHumanGrid(boolean isHumanGrid) {
+        this.isHumanGrid = isHumanGrid;
     }
 
     public void createGrid() {
