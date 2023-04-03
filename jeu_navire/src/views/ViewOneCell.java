@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Container;
 
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.text.Position;
 
@@ -100,11 +101,18 @@ public class ViewOneCell extends JPanel implements ListeningModel {
         Container parent = this.getParent();
         if(parent instanceof GridView) {
             GridView gridViewparent = (GridView) parent;
-            
+
             if(!gridViewparent.isHumanGrid()) {
                  // Get game model from grand-parent component
                 ControleGame grandParent = (ControleGame) gridViewparent.getParent();
                 Game game = grandParent.game;
+
+                // Make sure the game has started
+                if(!game.isStarted()){
+                    new MessageDialog("Appuyez sur jouer pour commencer",
+                    JOptionPane.INFORMATION_MESSAGE).showMessageDialog();
+                    return;
+                }
 
                 // @todo: should we make sure human is the current player ?
                 game.setCurrentPlayer(game.getHumainPlayer());

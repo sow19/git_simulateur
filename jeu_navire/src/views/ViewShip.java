@@ -29,10 +29,9 @@ public class ViewShip extends JPanel implements ListeningModel {
         createShip();
 
         if(this.ship.isVisible()) {
-            System.out.println("visible");
             this.setVisibility(true);
         }
-
+        
     }
 
     private ViewOneCell getViewCell(Cellule cell) {
