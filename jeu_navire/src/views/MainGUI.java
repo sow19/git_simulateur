@@ -29,4 +29,6 @@ public class MainGUI extends JFrame {
 		this.setVisible(true);
 
 	}
+
+
 }

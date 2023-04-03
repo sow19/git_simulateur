@@ -92,7 +92,7 @@ public class ControleGame extends JPanel implements ListeningModel {
 
 		// row 1
 		this.gbc.gridy = 1;
-		this.gbc.insets = new Insets(80, 0, 0, 0);
+		this.gbc.insets = new Insets(60, 0, 0, 0);
 
 		buttonPanel = new JPanel();
 		buttonPanel.setBackground(Color.WHITE);
@@ -101,7 +101,7 @@ public class ControleGame extends JPanel implements ListeningModel {
 		restartButton = new JButton("Recommencer");
 		buttonPanel.add(randomButton);
 		buttonPanel.add(playButton);
-		buttonPanel.add(restartButton);
+		// buttonPanel.add(restartButton);
 
 		this.add(buttonPanel, this.gbc);
 
@@ -134,14 +134,14 @@ public class ControleGame extends JPanel implements ListeningModel {
 			if (winner instanceof HumanPlayer) {
 				endMsg = "T'es un champion \uD83E\uDD29. T'as gagné. T'es le roi des mers \uD83D\uDC51 .";
 			} else {
-				endMsg = "T'as perdu \uD83D\uDE16. Retente ta chance";
+				endMsg = "T'as perdu \uD83D\uDE16.";
 			}
 
 			int result = new MessageDialog(endMsg, JOptionPane.INFORMATION_MESSAGE)
-			.showConfirmationMessageDialog("Recommener", "Quitter");
+			.showConfirmationMessageDialog("Ok", "Quitter");
 
 			if (result == JOptionPane.OK_OPTION) {
-				// Restart the game 
+				System.exit(0);
 			} else {
 				// quit application
 				System.exit(0);
