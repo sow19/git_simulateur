@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import util.AbstractListenableModel;
+import util.notifications.ShipNotification;
 /**
  * classe représentant un navire
 */
@@ -22,6 +23,11 @@ public class Ship extends AbstractListenableModel {
 		this.size = size;
 	}
 
+	public Ship(int size, boolean visible) {
+		this(size);
+		this.visible = visible;
+	}
+
 	//getters et setters
 
 	public ArrayList<Cellule> getShipCell() {
@@ -35,7 +41,7 @@ public class Ship extends AbstractListenableModel {
 			cell.setAssignedShip(false);
 		}
 		this.isDestroyed = true;
-		this.fireChangement();
+		this.fireChangement(ShipNotification.SHIP_DESTROYED);
 	}
 
 	public void setShipCell(ArrayList<Cellule> shipCell) {

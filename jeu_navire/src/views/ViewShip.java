@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import model.Ship;
 import util.ListeningModel;
+import util.notifications.ShipNotification;
 import model.Cellule;
 
 public class ViewShip extends JPanel implements ListeningModel {
@@ -18,21 +19,20 @@ public class ViewShip extends JPanel implements ListeningModel {
     protected Ship ship;
     protected ViewOneCell[] shipCellViews;
     protected GridView parentGridView;
-    protected boolean defaultShow;
 
-    public ViewShip(Ship ship, GridView parentGridView, Boolean defaultShow) {
+    public ViewShip(Ship ship, GridView parentGridView) {
         this.ship = ship;
         this.ship.addListening(this);
-        
+
         this.parentGridView = parentGridView;
-        this.defaultShow = defaultShow;
 
         createShip();
 
-        if(!defaultShow) {
-            this.setVisibility(false);
+        if(this.ship.isVisible()) {
+            System.out.println("visible");
+            this.setVisibility(true);
         }
-        
+
     }
 
     private ViewOneCell getViewCell(Cellule cell) {
@@ -50,7 +50,7 @@ public class ViewShip extends JPanel implements ListeningModel {
         String cellString = "[";
 
         for (Cellule cell : shipCells) {
-            cellString += "("+cell.getPosition().getX()+","+cell.getPosition().getY()+"), ";
+            cellString += "(" + cell.getPosition().getX() + "," + cell.getPosition().getY() + "), ";
 
             ViewOneCell viewCell = this.getViewCell(cell);
 
@@ -97,18 +97,24 @@ public class ViewShip extends JPanel implements ListeningModel {
                 viewCell.setDefaultColor();
                 count++;
             }
-            
+
         }
 
-       System.out.println("count: " + count);
+        System.out.println("count: " + count);
     }
 
     @Override
-    public void modeleMIsAJour(Object source) {
-        // Support destroyed ship
-        if(this.ship.isDestroyed()){
-            System.out.println("vue: Ship destroyed");
-            this.destroyShip();
+    public void modeleMIsAJour(Object source, Object notification) {
+        if (notification instanceof ShipNotification) {
+            if (notification == ShipNotification.SHIP_DESTROYED) { // Support destroyed ship
+                if (this.ship.isDestroyed()) {
+                    this.destroyShip();
+                }
+            }
+
+        } else {
+            System.out.println("Unhandled notification for ViewShip:  " + notification);
         }
+
     }
 }

@@ -15,7 +15,7 @@ public class HumanPlayer  extends AbstractPlayer{
 	 * @param grid la grille du joueur
 	 */
 	public HumanPlayer(Grid grid,String name) {
-		super(grid,name);	
+		super(grid,name);
 	}
 
 
@@ -26,8 +26,7 @@ public class HumanPlayer  extends AbstractPlayer{
  */
 public HumanPlayer() {
 	super();
-		
-	}
+}
 
 
 
@@ -114,9 +113,9 @@ public HumanPlayer() {
 					} while (!carac.equals("ve") && !carac.equals("ho"));
 	
 					if (carac.equals("ve")) {
-						added = this.addShip(x, y, new Ship(Config.sizeShip[i]), true);
+						added = this.addShip(x, y, new Ship(Config.sizeShip[i], true), true);
 					} else {
-						added = this.addShip(x, y, new Ship(Config.sizeShip[i]), false);
+						added = this.addShip(x, y, new Ship(Config.sizeShip[i], true), false);
 					}
 	
 					if (added) {

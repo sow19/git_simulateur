@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import model.Cellule;
 import util.ListeningModel;
+import util.notifications.CellNotification;
 
 public class ViewOneCell extends JPanel implements ListeningModel {
     // private static final long serialVersionUID = 1L;
@@ -75,18 +76,19 @@ public class ViewOneCell extends JPanel implements ListeningModel {
                     borderBottom = borderValue;
             }
         }
-
-        this.showBorder();
     }
 
     public void showBorder() {
-        this.setBorder(BorderFactory.createMatteBorder(borderTop, borderLeft, borderBottom, borderRight, Color.BLACK));
+        this.setBorder(BorderFactory.createMatteBorder(borderTop, borderLeft, borderBottom, borderRight, new Color(148, 39, 191)));
     }
 
     @Override
-    public void modeleMIsAJour(Object source) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modeleMIsAJour'");
+    public void modeleMIsAJour(Object source, Object notification) {
+        if (notification instanceof CellNotification) {
+
+        } else {
+            System.out.println("Unhandled notification for ViewOneCell:  " + notification);
+        }
     }
 
     // public void stateOfCell(CellState state){

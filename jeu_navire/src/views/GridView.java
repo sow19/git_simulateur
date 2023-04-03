@@ -7,6 +7,7 @@ import java.awt.Color;
 import model.Game;
 import model.Grid;
 import util.ListeningModel;
+import util.notifications.GridNotification;
 
 public class GridView extends JPanel implements ListeningModel {
     // private static final long JLabel = 1L;
@@ -89,9 +90,12 @@ public class GridView extends JPanel implements ListeningModel {
     }
 
     @Override
-    public void modeleMIsAJour(Object source) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modeleMIsAJour'");
+    public void modeleMIsAJour(Object source, Object notification) {
+        if (notification instanceof GridNotification) {
+
+        } else {
+            System.out.println("Unhandled notification for GridView:  " + notification);
+        }
     }
 
     

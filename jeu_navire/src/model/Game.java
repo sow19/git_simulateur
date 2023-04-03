@@ -1,6 +1,7 @@
 package model;
 
 import util.AbstractListenableModel;
+import util.notifications.GameNotification;
 
 /**
  * cette classe représente le jeu,elle contient toutes les méthodes utilisées pour faire tourner le jeu
@@ -10,6 +11,7 @@ public class Game extends AbstractListenableModel {
 	private HumanPlayer humainPlayer;
 	private RandomPlayer randomPlayer;
 	private AbstractPlayer currentPlayer;
+	private boolean started = false;
 
 	/**
 	 * Constructeur de la classe Game
@@ -45,6 +47,14 @@ public class Game extends AbstractListenableModel {
 
 	public void setCurrentPlayer(AbstractPlayer currentPlayer) {
 		this.currentPlayer = currentPlayer;
+	}
+
+	public boolean isStarted() {
+		return started;
+	}
+
+	public void setStarted(boolean started) {
+		this.started = started;
 	}
 
 	/**
@@ -95,11 +105,20 @@ public class Game extends AbstractListenableModel {
 
 	public void humanAddShipRandomLy() {
 		this.humainPlayer.addShipRandomLy();
+		this.humainPlayer.putShipVisible();
+		this.fireChangement(GameNotification.HUMAN_FLEET_CREATED);
 	}
 
 
 	public void randomAddShip() {
 		this.randomPlayer.addShipRandomLy();
+		this.fireChangement(GameNotification.RANDOM_FLEET_CREATED);
+	}
+
+	public void startGame() {
+		this.randomAddShip();
+		this.setStarted(true);
+		this.fireChangement(GameNotification.GAME_STARTED);
 	}
 
 
@@ -117,5 +136,7 @@ public class Game extends AbstractListenableModel {
         }
         System.out.println("Le joueur " + getWinner().getName() + " a gagné !");	
     }
+
+	
 		
 }
