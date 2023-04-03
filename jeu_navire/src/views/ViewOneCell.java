@@ -96,7 +96,12 @@ public class ViewOneCell extends JPanel implements ListeningModel {
                 new Color(148, 39, 191)));
     }
 
-    public void cellClicked() { 
+    public void cellClicked() {
+        // If cell have already been touched do nothing
+        if(cellOfGrid.getState() != CellState.BLANK) {
+            return;
+        }
+
         // Manage click event only on random player grid cells, human cannot hit himself
         Container parent = this.getParent();
         if(parent instanceof GridView) {
@@ -104,8 +109,8 @@ public class ViewOneCell extends JPanel implements ListeningModel {
 
             if(!gridViewparent.isHumanGrid()) {
                  // Get game model from grand-parent component
-                ControleGame grandParent = (ControleGame) gridViewparent.getParent();
-                Game game = grandParent.game;
+                ControleGame grandParentCGame = (ControleGame) gridViewparent.getParent();
+                Game game = grandParentCGame.game;
 
                 // Make sure the game has started
                 if(!game.isStarted()){
@@ -118,8 +123,20 @@ public class ViewOneCell extends JPanel implements ListeningModel {
                 game.setCurrentPlayer(game.getHumainPlayer());
                 game.shootGridAdversaire(cellOfGrid.getPosition());
 
-                // make the random player shoot 
-                game.shootGridAdversaire(game.getRandomPlayer().shoot());
+
+                // check if game is over before continue
+                if(!game.isOver()) {
+                    // game is not over, make the random player shoot 
+                    game.shootGridAdversaire(game.getRandomPlayer().shoot());
+
+                    //  also check if the game is over and end the game
+                    if(game.isOver()) grandParentCGame.endGame();
+                } else {
+                    // game is over end the game
+                    grandParentCGame.endGame();
+                }
+
+                
             }
         } else {
             System.out.println("DEBUG: CELL HAVE NOT PARENT GRID");

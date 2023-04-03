@@ -18,7 +18,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import model.AbstractPlayer;
 import model.Game;
+import model.HumanPlayer;
 import model.Ship;
 import util.ListeningModel;
 import util.notifications.GameNotification;
@@ -113,12 +115,44 @@ public class ControleGame extends JPanel implements ListeningModel {
 
 	public void createHumanFleet() {
 		// Add ships randomly on the model
-		this.game.humanAddShipRandomLy();
+		if(game.isStarted()) {
+			new MessageDialog("Vous ne pouvez pas placez vos navires en pleine partie",
+			JOptionPane.WARNING_MESSAGE).showMessageDialog();
+		} else {
+			this.game.humanAddShipRandomLy();
+		}
+		
+	}
+
+	public void endGame() {
+		// @todo: Maybe we will do some stuffs in the game model
+		if(game.isOver()) {
+			// Game is over, who's the winner ?
+			AbstractPlayer winner = game.getWinner();
+			String endMsg = "";
+
+			if (winner instanceof HumanPlayer) {
+				endMsg = "T'es un champion \uD83E\uDD29. T'as gagné. T'es le roi des mers \uD83D\uDC51 .";
+			} else {
+				endMsg = "T'as perdu \uD83D\uDE16. Retente ta chance";
+			}
+
+			int result = new MessageDialog(endMsg, JOptionPane.INFORMATION_MESSAGE)
+			.showConfirmationMessageDialog("Recommener", "Quitter");
+
+			if (result == JOptionPane.OK_OPTION) {
+				// Restart the game 
+			} else {
+				// quit application
+				System.exit(0);
+			}
+		}
+		
 	}
 
 	public void startGameClicked() {
 		if(game.isStarted()){
-			new MessageDialog("La partie est déjà en cours", JOptionPane.INFORMATION_MESSAGE).showMessageDialog();
+			new MessageDialog("La partie est déjà en cours \uD83D\uDE16", JOptionPane.INFORMATION_MESSAGE).showMessageDialog();
 		} else {
 			this.game.startGame();
 		}
