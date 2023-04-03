@@ -1,6 +1,7 @@
 package model;
 
 import util.AbstractListenableModel;
+import util.notifications.CellNotification;
 
 /**
  * classe representant une cellule de la grille d'un joueur
@@ -48,6 +49,7 @@ public class Cellule extends AbstractListenableModel {
 
 	public void setState(CellState state) {
 		this.state = state;
+		this.fireChangement(CellNotification.STATE_CHANGED);
 	}
 
 	public boolean isAssignedShip() {

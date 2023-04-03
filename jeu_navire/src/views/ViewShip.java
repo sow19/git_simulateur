@@ -110,6 +110,8 @@ public class ViewShip extends JPanel implements ListeningModel {
                 if (this.ship.isDestroyed()) {
                     this.destroyShip();
                 }
+            } else if(notification == ShipNotification.SHIP_VISIBILITY_CHANGED) {
+                this.setVisibility(this.ship.isVisible());
             }
 
         } else {

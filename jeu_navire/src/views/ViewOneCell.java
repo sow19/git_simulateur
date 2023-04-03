@@ -6,6 +6,7 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import model.CellState;
 import model.Cellule;
 import util.ListeningModel;
 import util.notifications.CellNotification;
@@ -79,25 +80,29 @@ public class ViewOneCell extends JPanel implements ListeningModel {
     }
 
     public void showBorder() {
-        this.setBorder(BorderFactory.createMatteBorder(borderTop, borderLeft, borderBottom, borderRight, new Color(148, 39, 191)));
+        this.setBorder(BorderFactory.createMatteBorder(borderTop, borderLeft, borderBottom, borderRight,
+                new Color(148, 39, 191)));
+    }
+
+    public void handleStateChanged() {
+        if (cellOfGrid.getState() == CellState.BLANK) {
+            this.setBackground(Color.WHITE);
+        } else if (cellOfGrid.getState() == CellState.HIT) {
+            this.setBackground(Color.RED);
+        } else if (cellOfGrid.getState() == CellState.MISSED) {
+            this.setBackground(Color.GREEN);
+        }
     }
 
     @Override
     public void modeleMIsAJour(Object source, Object notification) {
         if (notification instanceof CellNotification) {
-
+            if (notification == CellNotification.STATE_CHANGED) {
+                handleStateChanged();
+            }
         } else {
             System.out.println("Unhandled notification for ViewOneCell:  " + notification);
         }
     }
 
-    // public void stateOfCell(CellState state){
-    // if(state==CellState.BLANK){
-    // this.setBackground(Color.WHITE);
-    // } else if(state==CellState.HIT){
-    // this.setBackground(Color.RED);
-    // } else if(state==CellState.MISSED){
-    // this.setBackground(Color.GREEN);
-    // }
-    // }
 }
