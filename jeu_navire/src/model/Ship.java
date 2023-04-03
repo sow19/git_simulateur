@@ -54,6 +54,7 @@ public class Ship extends AbstractListenableModel {
 
 	public void setVisible(boolean visible) {
 		this.visible = visible;
+		this.fireChangement(ShipNotification.SHIP_VISIBILITY_CHANGED);
 	}
 
 	public int getSize() {
