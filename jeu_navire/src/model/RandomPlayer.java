@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Random;
 import config.Config;
 
@@ -12,23 +14,28 @@ import config.Config;
 public class RandomPlayer extends AbstractPlayer {
 
 	private Random random;
+	private ArrayList<Position> positionsAlreadyShot; // ajouter pour s'assurer qu'une position n'est pas choisi deux fois par le Random dans la methode shoot
+	private ArrayList<Position> possiblePoisitions;
+	private Grid gridOpponent;
 
 	/**
 	 * Constructeur de la classe.
 	 * Initialise le joueur avec un nom, une grille de jeu vide et une flotte vide.
 	 * @param grid La grille du joueur.
 	 */
-	public RandomPlayer(Grid grid) {
+	public RandomPlayer(Grid grid, Grid gridOpponent) {
 		super(grid, "Random");
 		this.random = new Random();
-		//this.addShipRandomLy();
+		this.gridOpponent = gridOpponent;
+		this.positionsAlreadyShot = new ArrayList<Position>();
+		this.possiblePoisitions = grid.getAllPositions();
 	}
 
 	/**
 	 * constructeur sans argument
 	 */
 	public RandomPlayer(){
-		super();
+		this(null, null);
 	}
 
 	//getters and setters
@@ -40,15 +47,74 @@ public class RandomPlayer extends AbstractPlayer {
 		this.random = random;
 	}
 
+	
 	/**
+	 * Tirer de manière intelligente
+	 */
+	public Position shoot(){
+		// Rechercher les positions les plus probables pour contenir des bateaux
+        ArrayList<Position> positionsProbables = new ArrayList<>();
+		Position resPos;
 
+        // Parcourir les positions déjà tirées
+        for (Position position : positionsAlreadyShot) {
+			int x = position.getX();
+            int y = position.getY();
+			System.out.println("(" + x + "," + y + ")");
+
+			System.out.println(gridOpponent.getCellulePosition(position).getState());
+
+			if(gridOpponent.getCellulePosition(position).getState() != CellState.HIT) {
+				continue;
+			}
+
+			System.out.println("Here");
+			
+
+            
+			
+			// Positionad adjacentes
+			ArrayList<Position> nestedPositions = new ArrayList<Position>();
+			nestedPositions.add(new Position(x - 1, y));
+			nestedPositions.add(new Position(x + 1, y));
+			nestedPositions.add(new Position(x, y - 1));
+			nestedPositions.add(new Position(x, y + 1));
+
+            for(Position nestedPos: nestedPositions ) {
+				Cellule cell = gridOpponent.getCellulePosition(nestedPos);
+				if (cell != null && cell.getState() == CellState.BLANK)
+					positionsProbables.add(nestedPos);
+			}
+        }
+
+        // Si aucune position probable n'est trouvée, tirer aléatoirement
+        if (positionsProbables.isEmpty()) {
+			System.out.println("Random shoot");
+            resPos = randomShoot();
+        } else {
+			// Choisir une position probable aléatoirement parmi les positions probables
+			System.out.println("inteligent shoot");
+			int index = random.nextInt(positionsProbables.size());
+			resPos = positionsProbables.get(index);
+		}
+
+		
+		positionsAlreadyShot.add(resPos);
+		possiblePoisitions.remove(resPos);
+		return resPos;
+		
+
+	}
+
+
+	/**
     * Méthode  qui génère une position aléatoire pour un tir sur la grille de l'adversaire.
     * @return La position aléatoire générée.
     */
-	public Position shoot(){
-		int x = random.nextInt(this.grid.getDimension().getRows());
-        int y = random.nextInt(this.grid.getDimension().getCols());
-        return new Position(x, y);
+	public Position randomShoot() {
+		int index = random.nextInt(possiblePoisitions.size());
+		Position pos = possiblePoisitions.get(index);
+		return pos;
 	}
 		
 	

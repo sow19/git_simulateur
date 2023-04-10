@@ -153,7 +153,6 @@ public abstract class AbstractPlayer extends AbstractListenableModel {
 					return false;
 				}
 			}
-			System.out.println("j'ai perdu");
 			return true;
 		}
 

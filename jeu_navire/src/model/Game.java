@@ -66,7 +66,7 @@ public class Game extends AbstractListenableModel {
             return this.humainPlayer;
         }
 		if (this.humainPlayer.isLost()){
-			return this.humainPlayer;
+			return this.randomPlayer;
 		}
 		return null;
     }
@@ -94,7 +94,18 @@ public class Game extends AbstractListenableModel {
 		Cellule celluleAdversaire = adversaire.getGrid().getCellulePosition(position);
 	
 		if (celluleAdversaire.isAssignedShip()) {
+			if(currentPlayer instanceof RandomPlayer)
+				System.out.println("Hited");
 			celluleAdversaire.setState(CellState.HIT);
+			if(currentPlayer instanceof RandomPlayer) {
+				int x = position.getX();
+				int y = position.getY();
+				System.out.println("(" + x + "," + y + ")");	
+				System.out.println(celluleAdversaire.getState());
+				System.out.println(adversaire.getGrid().getCellulePosition(position).getState());
+				System.out.println(celluleAdversaire.getState() == CellState.HIT);
+			}
+				
 		} else {
 			celluleAdversaire.setState(CellState.MISSED);
 		}

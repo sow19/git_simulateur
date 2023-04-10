@@ -12,6 +12,7 @@ import java.util.Collections;
 public class Grid extends AbstractListenableModel {
 	private Dimension dimension;
 	private Cellule [][] board;
+	private ArrayList<Position> allPositions = new ArrayList<Position>();
 
 	/**
 	 * Constructeur de la classe permet d'initialiser la grille
@@ -22,21 +23,30 @@ public class Grid extends AbstractListenableModel {
 		this.board = new Cellule[dimension.getRows()][dimension.getCols()];
 		for(int i=0;i<this.dimension.getRows();i++){
 			for(int j=0; j< this.dimension.getCols();j++){
-				this.board[i][j] = new Cellule(new Position(i, j));
+				Position pos = new Position(i, j);
+				allPositions.add(pos);
+				this.board[i][j] = new Cellule(pos);
 			} 
 		}
 
-	//getters et setters	
 	}
-	/**
-	 * Constructeur sans argument
-	 */
-
-	public Grid() {
-		
-	}
+	
 
 	
+
+	public ArrayList<Position> getAllPositions() {
+		return allPositions;
+	}
+
+
+
+
+	public void setAllPositions(ArrayList<Position> allPositions) {
+		this.allPositions = allPositions;
+	}
+
+
+
 
 	public Dimension getDimension() {
 		return dimension;
@@ -60,7 +70,15 @@ public class Grid extends AbstractListenableModel {
 	 * @return
 	 */
 	public Cellule getCellulePosition(Position position){
-		return this.board[position.getX()][position.getY()];
+		int x = position.getX();
+		int y = position.getY();
+		System.out.println("(" + x + "," + y + ")");
+		System.out.println(board.length);
+		System.out.println(board[0].length);
+		if( x >= 0 && x < board.length && y >= 0 && y < board[0].length)
+			return this.board[position.getX()][position.getY()];
+		else
+			return null;
 	}
 
 	/**

@@ -7,7 +7,7 @@ public class Demo {
         Grid grid1 = new Grid(new Dimension(Config.GRID_Rows,Config.GRID_Cols));
         Grid grid2 = new Grid(new Dimension(Config.GRID_Rows,Config.GRID_Cols));
         HumanPlayer humain = new HumanPlayer(grid1, "Joueur humain");
-        RandomPlayer random = new RandomPlayer(grid2);
+        RandomPlayer random = new RandomPlayer(grid2, grid1);
         Game game = new Game(humain, random);
 
         /*System.out.println("la grille du random avant la méthode ad");

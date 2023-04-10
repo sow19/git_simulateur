@@ -17,7 +17,7 @@ public class Main {
 
 		// Creating human player and random player object
 		HumanPlayer hplayer = new HumanPlayer(grid, "Moi");
-		RandomPlayer rplayer = new RandomPlayer(gridRandom);
+		RandomPlayer rplayer = new RandomPlayer(gridRandom, grid);
 
 		// Create the game object and launch GUI
 		Game game = new Game(hplayer, rplayer);
