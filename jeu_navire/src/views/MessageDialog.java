@@ -6,21 +6,26 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+/** A class for showing message dialog in the gui */
 public class MessageDialog {
+    /** The message to show */
     private String message;
+
+    /** The type of the message */
     private int type;
 
     public MessageDialog(String message, int type) {
-        // Charger une police qui prend en charge l'affichage des emojis
+        // Load font for emojis
         Font font = new Font("Segoe UI Emoji", Font.PLAIN, 12);
-
-        // Définir la police de Swing pour prendre en charge l'affichage des emojis
         UIManager.put("OptionPane.messageFont", font);
 
         this.message = message;
         this.type = type;
     }
 
+    /**
+     * Shows a simple message dialog
+     */
     public void showMessageDialog() {
         switch (type) {
             case JOptionPane.ERROR_MESSAGE:
@@ -39,6 +44,9 @@ public class MessageDialog {
         loadDefaultFont();
     }
 
+     /**
+     * Shows a message dialog with confimation buttons
+     */
     public int showConfirmationMessageDialog(String okButtonLabel, String cancelButtonLabel) {
         int res = JOptionPane.showOptionDialog(null, message, "",
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,
@@ -49,11 +57,12 @@ public class MessageDialog {
         return res;
     }
 
+    /** Load default font */
     public void loadDefaultFont() {
-        // Obtenir le nom de la classe de l'apparence système par défaut
+        // Get default system font name
         String defaultLAF = UIManager.getSystemLookAndFeelClassName();
 
-        // Définir l'apparence par défaut de Swing
+        // Set default swing apperance
         try {
             UIManager.setLookAndFeel(defaultLAF);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
@@ -62,7 +71,7 @@ public class MessageDialog {
             e.printStackTrace();
         }
 
-        // Restaurer la police par défaut de Swing
+        // Restore default font
         UIManager.put("OptionPane.messageFont", new Font(Font.DIALOG, Font.PLAIN, 12));
     }
 }

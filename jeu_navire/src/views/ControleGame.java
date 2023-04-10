@@ -25,26 +25,40 @@ import model.Ship;
 import util.ListeningModel;
 import util.notifications.GameNotification;
 
+/**
+ * Main view of the. It represents the game baord.
+ * It contains grid and control buttons
+ */
 public class ControleGame extends JPanel implements ListeningModel {
+	/** The class responsible for navigating thru pages */
 	protected PageManager pageManager;
+
+	/** GridBagConstraints of the layout */
 	protected GridBagConstraints gbc;
+	
+	/** The game model associated to this vi */
 	protected Game game;
 
+	/** Player grid view */
 	protected GridView humanGridView;
+
+	/** Random grid view */
 	protected GridView randomGridView;
 
+	/** Controls buttons */
 	protected JPanel buttonPanel;
-	protected JButton randomButton;
-	protected JButton playButton;
-	protected JButton restartButton;
+	protected JButton randomButton; // randomly add ships for human player
+	protected JButton playButton; // start the game
 
-	protected ArrayList<ViewShip> viewShipsHuman = new ArrayList<ViewShip>();
-	protected ArrayList<ViewShip> viewShipsRandom = new ArrayList<ViewShip>();
+	// protected ArrayList<ViewShip> viewShipsHuman = new ArrayList<ViewShip>();
+	// protected ArrayList<ViewShip> viewShipsRandom = new ArrayList<ViewShip>();
 
 	public ControleGame(PageManager pageManager, Game game) {
 		super();
 		this.setBackground(Color.WHITE);
 		this.pageManager = pageManager;
+		
+		// Assign associated model and listen to it
 		this.game = game;
 		this.game.addListening(this);
 
@@ -58,7 +72,6 @@ public class ControleGame extends JPanel implements ListeningModel {
 		// creates a constraints object
 		this.gbc = new GridBagConstraints();
 
-		// natural height, maximum width
 		this.gbc.fill = GridBagConstraints.HORIZONTAL;
 
 		this.gbc.insets = new Insets(10, 0, 0, 0);
@@ -94,14 +107,13 @@ public class ControleGame extends JPanel implements ListeningModel {
 		this.gbc.gridy = 1;
 		this.gbc.insets = new Insets(60, 0, 0, 0);
 
+		// Adding controls buttons
 		buttonPanel = new JPanel();
 		buttonPanel.setBackground(Color.WHITE);
 		randomButton = new JButton("Placer mes navires");
 		playButton = new JButton("Jouer");
-		restartButton = new JButton("Recommencer");
 		buttonPanel.add(randomButton);
 		buttonPanel.add(playButton);
-		// buttonPanel.add(restartButton);
 
 		this.add(buttonPanel, this.gbc);
 
@@ -113,8 +125,10 @@ public class ControleGame extends JPanel implements ListeningModel {
 
 	}
 
+	/**
+	 * Creat human fleet
+	 */
 	public void createHumanFleet() {
-		// Add ships randomly on the model
 		if(game.isStarted()) {
 			new MessageDialog("Vous ne pouvez pas placez vos navires en pleine partie",
 			JOptionPane.WARNING_MESSAGE).showMessageDialog();
@@ -124,6 +138,9 @@ public class ControleGame extends JPanel implements ListeningModel {
 		
 	}
 
+	/**
+	 * End the game
+	 */
 	public void endGame() {
 		// @todo: Maybe we will do some stuffs in the game model
 		if(game.isOver()) {
@@ -131,12 +148,14 @@ public class ControleGame extends JPanel implements ListeningModel {
 			AbstractPlayer winner = game.getWinner();
 			String endMsg = "";
 
+			// Getting right end msg
 			if (winner instanceof HumanPlayer) {
 				endMsg = "T'es un champion \uD83E\uDD29. T'as gagné. T'es le roi des mers \uD83D\uDC51 .";
 			} else {
 				endMsg = "T'as perdu \uD83D\uDE16.";
 			}
 
+			// Show end msg and quit
 			int result = new MessageDialog(endMsg, JOptionPane.INFORMATION_MESSAGE)
 			.showConfirmationMessageDialog("Ok", "Quitter");
 
@@ -150,6 +169,9 @@ public class ControleGame extends JPanel implements ListeningModel {
 		
 	}
 
+	/**
+	 * Handler for button play(jouer)
+	 */
 	public void startGameClicked() {
 		if(game.isStarted()){
 			new MessageDialog("La partie est déjà en cours \uD83D\uDE16", JOptionPane.INFORMATION_MESSAGE).showMessageDialog();
@@ -163,31 +185,44 @@ public class ControleGame extends JPanel implements ListeningModel {
 	// 	// Add ships randomly on the model
 	// 	this.game.randomAddShip();
 	// }
-
+	
+	/**
+	 * Handler for human fleet created notification
+	 */
 	public void handleHumanFleetCreated() {
 		// Assign a view for each ship
 		ArrayList<Ship> fleet = this.game.getHumainPlayer().getFleet();
 
-		for (Ship ship : fleet) { // @todo: do we need this ?
+		for (Ship ship : fleet) {
 
 			new ViewShip(ship, this.humanGridView);
 			// viewShipsHuman.add(new ViewShip(ship, this.humanGridView, true));
 		}
 	}
 
+	/**
+	 * Handler for random fleet crated notification
+	 */
 	public void handleRandomFleetCreated() {
 		// Assign a view for each ship
 		ArrayList<Ship> fleet = this.game.getRandomPlayer().getFleet();
 
-		for (Ship ship : fleet) { // @todo: do we need this ?
-			viewShipsRandom.add(new ViewShip(ship, this.randomGridView));
+		for (Ship ship : fleet) {
+			new ViewShip(ship, this.randomGridView);
 		}
 	}
 
+	/** 
+	 * Handler for game started notfication. Show a start message
+	 */
 	public void handleGameStarted() {
 		new MessageDialog("La partie peu commencer", JOptionPane.INFORMATION_MESSAGE).showMessageDialog();
 	}
 
+	/**
+	 * Update method for model notification.
+	 * Call appropriated handler switch notification
+	 */
 	@Override
 	public void modeleMIsAJour(Object source, Object notification) {
         if (notification instanceof GameNotification) {
@@ -205,15 +240,16 @@ public class ControleGame extends JPanel implements ListeningModel {
         }
     }
 
+	/**
+	 * Event manager
+	 */
 	public void manageEvent() {
-		// Randomly add ship for humane
 		randomButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				createHumanFleet();
+				createHumanFleet ();
 			}
 		});
 
-		// Start the game
 		playButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				startGameClicked();

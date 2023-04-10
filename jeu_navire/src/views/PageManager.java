@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import model.Game;
 
+/** A class responsible to navigate between pages */
 public class PageManager extends JPanel{
     public final static long serialVersionUID = 1L;
     final static String WELCOME_PAGE = "WELCOME";
@@ -17,6 +18,8 @@ public class PageManager extends JPanel{
     public PageManager(Game game) {
         super();
         this.game = game;
+
+        // Using a card layout
         this.setLayout(new CardLayout());
         this.setBackground(Color.WHITE);
         
@@ -30,11 +33,13 @@ public class PageManager extends JPanel{
         setVisible(true);
     }
 
+    /** Go to next page */
     public void nextPage() {
         CardLayout cl = (CardLayout) this.getLayout();
         cl.next(this);
     }
 
+    /** Go to prev page */
     public void prev() {
         this.prev();
     }

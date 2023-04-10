@@ -1,8 +1,7 @@
 package views;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
@@ -11,19 +10,19 @@ import java.awt.Container;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.text.Position;
 
 import model.CellState;
 import model.Cellule;
 import model.Game;
-import model.Grid;
 import util.ListeningModel;
 import util.notifications.CellNotification;
 
+/** A class representing a cell view */
 public class ViewOneCell extends JPanel implements ListeningModel {
-    // private static final long serialVersionUID = 1L;
+    /** Cell model  */
     public Cellule cellOfGrid;
 
+    /** Cell border properties */
     protected int borderTop = 0;
     protected int borderBottom = 0;
     protected int borderLeft = 0;
@@ -35,6 +34,7 @@ public class ViewOneCell extends JPanel implements ListeningModel {
         super();
         this.setBackground(Color.WHITE);
 
+        // Set cell model and listen to it
         this.cellOfGrid = cell;
         this.cellOfGrid.addListening(this);
 
@@ -45,28 +45,42 @@ public class ViewOneCell extends JPanel implements ListeningModel {
 
     }
 
+    /** 
+     * Set to the cell the default color.
+     * It's use when we cell ship's pass from visble to not visible
+     */
     public void setDefaultColor() {
-        System.out.println("vue: cell def");
         this.setBorder(BorderFactory.createLineBorder(defaultColor, 1));
-        // this.setBorder(javax.swing.BorderFactory.createEmptyBorder());
     }
 
+    /**
+     * Assign a cell to ship. 
+     * It's use to give a ship appearence to a group of cells by setting the right border to them
+     * @param horizontal determine wether the ship is horizontal or vertical
+     * @param orientation  1 if ship is oriented top or right, -1 if bottom or left
+     * @param last determine wether the cell is the last cell of the ship
+     * @param first determine wether the cell is the first cell of the ship
+     */
     public void assignToShip(boolean horizontal, int orientation, boolean last, boolean first) {
+        // Initialize all properties
         this.borderTop = 0;
         this.borderBottom = 0;
         this.borderLeft = 0;
         this.borderRight = 0;
 
         if (horizontal) {
+            // if horizontal each cell have a bordertop and a border bottom
             borderTop = borderValue;
             borderBottom = borderValue;
 
             if (orientation == 1) {
+                // if oriented right set a borderLeft to the first cell and a  borderRight to the last one
                 if (first)
                     borderLeft = borderValue;
                 if (last)
                     borderRight = borderValue;
             } else {
+                // if oriented left do the invers
                 if (first)
                     borderRight = borderValue;
                 if (last)
@@ -74,15 +88,18 @@ public class ViewOneCell extends JPanel implements ListeningModel {
             }
 
         } else {
+            // if vertical each cell have a borderLeft and a borderRight
             borderLeft = borderValue;
             borderRight = borderValue;
 
             if (orientation == 1) {
+                // if oriented top set a border bottom the first cell and a border top to the last cell
                 if (first)
                     borderBottom = borderValue;
                 if (last)
                     borderTop = borderValue;
             } else {
+                // if oriented bottom do the inverse
                 if (first)
                     borderTop = borderValue;
                 if (last)
@@ -91,11 +108,18 @@ public class ViewOneCell extends JPanel implements ListeningModel {
         }
     }
 
+    /**
+     * Show the cell border.
+     * Used when the cell ship's pass from not visible to visible. 
+     */
     public void showBorder() {
         this.setBorder(BorderFactory.createMatteBorder(borderTop, borderLeft, borderBottom, borderRight,
                 new Color(148, 39, 191)));
     }
 
+    /**
+     * Handler for click event
+     */
     public void cellClicked() {
         // If cell have already been touched do nothing
         if(cellOfGrid.getState() != CellState.BLANK) {
@@ -146,6 +170,9 @@ public class ViewOneCell extends JPanel implements ListeningModel {
        
     }
 
+    /** 
+     * Handler for cell state changes
+     */
     public void handleStateChanged() {
         if (cellOfGrid.getState() == CellState.BLANK) {
             this.setBackground(Color.WHITE);
@@ -157,6 +184,9 @@ public class ViewOneCell extends JPanel implements ListeningModel {
     }
 
 
+    /**
+     * Update method for method for model notification
+     */
     @Override
     public void modeleMIsAJour(Object source, Object notification) {
         if (notification instanceof CellNotification) {
@@ -168,6 +198,9 @@ public class ViewOneCell extends JPanel implements ListeningModel {
         }
     }
 
+    /**
+     * Event manager
+     */
     public void manageEvent() {
         this.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {

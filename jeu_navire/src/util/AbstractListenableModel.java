@@ -20,7 +20,6 @@ public abstract class AbstractListenableModel implements ListenableModel {
 		
 	}
 	protected void fireChangement(Object notification) {
-		System.out.println("ecouiteurs" + ecouteurs.size());
 		for(ListeningModel  e : ecouteurs) {
 			e.modeleMIsAJour(this, notification);
 		}

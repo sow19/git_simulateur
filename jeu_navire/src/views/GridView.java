@@ -2,21 +2,28 @@ package views;
 
 import java.awt.*;
 import javax.swing.*;
+
+import config.Config;
+
 import java.awt.Color;
 
-import model.Game;
 import model.Grid;
 import util.ListeningModel;
 import util.notifications.GridNotification;
 
+/** The Grid view */
 public class GridView extends JPanel implements ListeningModel {
-    // private static final long JLabel = 1L;
-    protected int rows = 10;
-    protected int cols = 10;
-    protected Game game;
+    /** Grid dimensions */
+    protected int rows = Config.GRID_Rows;
+    protected int cols = Config.GRID_Cols;
+
+    /** Grid board view */
     protected ViewOneCell[][] boardView;
     protected Grid gridModel;
+
+    /** GridBagConstraints for the layout */
     protected GridBagConstraints gbc;
+
     protected String gridLabel = "Joueur";
     protected boolean isHumanGrid;
 
@@ -24,18 +31,17 @@ public class GridView extends JPanel implements ListeningModel {
         super();
         this.setBackground(Color.WHITE);
 
+        // Assign model to view and listen to it
         this.gridModel = gridModel;
         this.gridModel.addListening(this);
 
         this.gridLabel = gridLabel;
         this.isHumanGrid = isHumanGrid;
 
-        // initialisation de la grille et des attributs
         this.rows = this.gridModel.getDimension().getRows();
         this.cols = this.gridModel.getDimension().getCols();
         this.boardView = new ViewOneCell[this.rows][this.cols];
-        // this.add(this.createGrid(),BorderLayout.CENTER);
-        //this.setSize(new Dimension(6000,1000));
+       
 
         // Setting the layout
         this.setLayout(new GridBagLayout());
@@ -61,22 +67,33 @@ public class GridView extends JPanel implements ListeningModel {
         this.gbc.ipady = 30;
         this.gbc.weightx = 0;
         this.gbc.weighty = 0;
+        
         createGrid();
 
         //this.setVisible(true);
-
-        //this.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
     }
 
+    /**
+     * Return wether the grid is human's or random's
+     * @return wether the grid is human's or random's
+     */
     public boolean isHumanGrid() {
         return isHumanGrid;
     }
 
+    /**
+     * Setter for isHumanGrid
+     * @param isHumanGrid
+     */
     public void setHumanGrid(boolean isHumanGrid) {
         this.isHumanGrid = isHumanGrid;
     }
 
+    /**
+     * Create the grid
+     */
     public void createGrid() {
+        // Arrange the cells next to each other to form the grid
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.cols; j++) {
                 // row i
@@ -99,6 +116,9 @@ public class GridView extends JPanel implements ListeningModel {
         this.boardView = boardView;
     }
 
+    /**
+     * Update method for grid model notification
+     */
     @Override
     public void modeleMIsAJour(Object source, Object notification) {
         if (notification instanceof GridNotification) {

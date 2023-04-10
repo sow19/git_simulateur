@@ -1,7 +1,5 @@
 package views;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -20,9 +18,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/** The game home page view */
 public class Welcome extends JPanel {
+	/** A class responsible to navigate between page */
 	PageManager pageManager;
+	
+	/** Start button */
 	JButton startButton;
+
+	/** Welcome label */
 	JLabel welcomeLabel;
 	
 	public Welcome(PageManager pageManager) {
@@ -54,7 +58,7 @@ public class Welcome extends JPanel {
 	}
 	
 	/**
-	 * Our controller
+	 * Event manager
 	 */
 	public void manageEvent() {
 		startButton.addActionListener(new ActionListener() { 
@@ -64,13 +68,16 @@ public class Welcome extends JPanel {
 				} );
 	}
 	
+	/**
+	 * Handler for start button click
+	 */
 	public void startButtonClicked() {
 		pageManager.nextPage();
 	}
 	
 	
 	@Override
-	  protected void paintComponent(Graphics g) {
+	protected void paintComponent(Graphics g) {
 	    super.paintComponent(g);
 	 // Load the background image
         BufferedImage img = null;
