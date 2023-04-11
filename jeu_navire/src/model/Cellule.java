@@ -10,7 +10,7 @@ import util.notifications.CellNotification;
 public class Cellule extends AbstractListenableModel {
 	private Position position;
 	private CellState state;
-	private boolean isAssignedShip;
+	private Ship assignedShip;
 
 	/**
 	 * constructeur de la classe initialise une cellule avec une position ,l'etat de la cellule à BLANK,et dit qu'elle n'appartient pas à un navire
@@ -19,8 +19,12 @@ public class Cellule extends AbstractListenableModel {
 	public Cellule(Position position) {
 		this.position = position;
 		this.state = CellState.BLANK;
-		this.isAssignedShip = false;
+		this.assignedShip = null;
 		
+	}
+
+	public Ship getAssignedShip() {
+		return assignedShip;
 	}
 
 	/**
@@ -29,8 +33,7 @@ public class Cellule extends AbstractListenableModel {
 	 */
 	public Cellule() {
 		this.state = CellState.BLANK;
-		this.isAssignedShip = false;
-		
+		this.assignedShip = null;	
 	}
 
 	//getters et setters
@@ -53,11 +56,11 @@ public class Cellule extends AbstractListenableModel {
 	}
 
 	public boolean isAssignedShip() {
-		return isAssignedShip;
+		return (this.assignedShip != null);
 	}
 
-	public void setAssignedShip(boolean isAssignedShip) {
-		this.isAssignedShip = isAssignedShip;
+	public void setAssignedShip(Ship assignedShip) {
+		this.assignedShip = assignedShip;
 	}
 
 

@@ -129,12 +129,12 @@ public abstract class AbstractPlayer extends AbstractListenableModel {
 		}else{
 			if (!estVertical) {
 				for (int i = y; i < y + ship.getSize(); i++) {
-					this.grid.getBoard()[x][i].setAssignedShip(true);
+					this.grid.getBoard()[x][i].setAssignedShip(ship);
 					ship.getShipCell().add(this.grid.getBoard()[x][i]); // ajouter la cellule à la liste des cellules du bateau
 				}
 			} else {
 				for (int j = x; j < x + ship.getSize(); j++) {
-					this.grid.getBoard()[j][y].setAssignedShip(true);
+					this.grid.getBoard()[j][y].setAssignedShip(ship);
 					ship.getShipCell().add(this.grid.getBoard()[j][y]);
 				}
 			}

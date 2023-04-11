@@ -109,7 +109,14 @@ public class Game extends AbstractListenableModel {
 		} else {
 			celluleAdversaire.setState(CellState.MISSED);
 		}
-		adversaire.putShipVisible();
+		
+		// Check if ship is sanked and show it
+		if(celluleAdversaire.isAssignedShip()) {
+			Ship ship = celluleAdversaire.getAssignedShip();
+			if(ship.isSank()) {
+				ship.setVisible(true);
+			}
+		}
 	
 		this.currentPlayer = adversaire;
 	}

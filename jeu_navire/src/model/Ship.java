@@ -40,7 +40,7 @@ public class Ship extends AbstractListenableModel {
 	public void destroy() {
 		// Free ship cell
 		for(Cellule cell: shipCell) {
-			cell.setAssignedShip(false);
+			cell.setAssignedShip(null);
 		}
 		this.isDestroyed = true;
 		this.fireChangement(ShipNotification.SHIP_DESTROYED);
