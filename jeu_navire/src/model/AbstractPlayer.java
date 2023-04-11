@@ -61,9 +61,10 @@ public abstract class AbstractPlayer extends AbstractListenableModel {
 		this.fleet = fleet;
 	}
 
+	/**
+	 * Destroy the fleet of the player
+	 */
 	public void resetFleet() {
-		System.out.println("================= Fleet size =================" + fleet.size());
-		//Thread.dumpStack();
 		for(Ship ship: fleet) {
 			ship.destroy();
 		}

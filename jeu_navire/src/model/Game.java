@@ -114,6 +114,9 @@ public class Game extends AbstractListenableModel {
 		this.currentPlayer = adversaire;
 	}
 
+	/**
+	 * Create human fleet randomly
+	 */
 	public void humanAddShipRandomLy() {
 		this.humainPlayer.addShipRandomLy();
 		this.humainPlayer.putShipVisible();
@@ -121,11 +124,18 @@ public class Game extends AbstractListenableModel {
 	}
 
 
+	/**
+	 * Create random fleet
+	 */
 	public void randomAddShip() {
 		this.randomPlayer.addShipRandomLy();
 		this.fireChangement(GameNotification.RANDOM_FLEET_CREATED);
 	}
 
+	
+	/**
+	 * Start the game
+	 */
 	public void startGame() {
 		this.randomAddShip();
 		this.setStarted(true);
