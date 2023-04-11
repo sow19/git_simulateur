@@ -14,7 +14,7 @@ public class TestAbstractPlayer {
 		Grid grid1 = new Grid(new Dimension(5,6));
 		Grid grid2 = new Grid(new Dimension(5,6));
 		AbstractPlayer humain = new HumanPlayer(grid1, "humain");
-		AbstractPlayer random = new RandomPlayer(grid2);
+		AbstractPlayer random = new RandomPlayer(grid2,grid1);
 		
 		assertEquals("humain", humain.getName());
 		assertEquals("Random", random.getName());
@@ -32,7 +32,7 @@ public class TestAbstractPlayer {
 		Grid grid1 = new Grid(new Dimension(5,5));
 		Grid grid2 = new Grid(new Dimension(5,5));
 		AbstractPlayer humain = new HumanPlayer(grid1, "humain");
-		AbstractPlayer random = new RandomPlayer(grid2);
+		AbstractPlayer random = new RandomPlayer(grid2,grid1);
 		
 		
 		//Tests sur le joueur humain
@@ -98,7 +98,7 @@ public class TestAbstractPlayer {
 	    Grid grid1 = new Grid(dimension);
 	    Grid grid2 = new Grid(dimension);
 	    AbstractPlayer humain = new HumanPlayer(grid1, "humain");
-		AbstractPlayer random = new RandomPlayer(grid2);
+		AbstractPlayer random = new RandomPlayer(grid2,grid1);
 	   
 	    // Création d'une flotte de navires
 	    ArrayList<Ship> fleet = new ArrayList<>();

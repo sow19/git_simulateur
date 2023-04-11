@@ -13,7 +13,8 @@ import java.util.InputMismatchException;
 public class TestRandomPlayer {
 	
 	private Grid grid = new Grid(new Dimension(20,20));
-	private RandomPlayer random = new RandomPlayer(grid);
+	private Grid gridHumain = new Grid(new Dimension(20,20));
+	private RandomPlayer random = new RandomPlayer(grid,gridHumain);
 	
 	@Test
 	public void testConstructeur() {
