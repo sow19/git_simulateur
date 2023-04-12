@@ -6,11 +6,11 @@ package navaletests;
  *
  */
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 import model.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -27,7 +27,7 @@ public class TestHmainPlayer  {
 		assertEquals("saoudatou",humain.getName());
 		assertEquals(grid,humain.getGrid());
 		assertNotNull(humain.getGrid());
-		assertEquals(true, humain.getFleet().isEmpty(),"flot du joueur ko");
+		assertEquals("la flotte du joueur doit etre vide",true, humain.getFleet().isEmpty());
 		assertEquals(6, humain.getGrid().getDimension().getRows());
         assertEquals(6, humain.getGrid().getDimension().getCols());
 	}

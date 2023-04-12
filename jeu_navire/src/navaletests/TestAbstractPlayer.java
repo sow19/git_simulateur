@@ -6,11 +6,11 @@ package navaletests;
  *
  */
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 import model.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
@@ -20,16 +20,13 @@ public class TestAbstractPlayer {
 		Grid grid1 = new Grid(new Dimension(5,6));
 		Grid grid2 = new Grid(new Dimension(5,6));
 		AbstractPlayer humain = new HumanPlayer(grid1, "humain");
-		AbstractPlayer random = new RandomPlayer(grid2);
-		
+		AbstractPlayer random = new RandomPlayer(grid2,grid1);
 		assertEquals("humain", humain.getName());
 		assertEquals("Random", random.getName());
-		assertEquals(true, humain.getFleet().isEmpty(),"flot du joueur humain ok");
-		assertEquals(true, humain.getFleet().isEmpty(),"flot du joueur random ok");
-		assertNotNull(humain.getGrid(),"grille du joueur humain ok");
-		assertNotNull(random.getGrid(),"grille du joueur random ok");
-	
-		
+		assertEquals("la flotte du joueur humain doit être vide",true, humain.getFleet().isEmpty());
+		assertEquals("la flotte du joueur random doit être vide",true, humain.getFleet().isEmpty());
+		assertNotNull("la grille du joueur humain ne doit pas etre vide",humain.getGrid());
+		assertNotNull("la grille du joueur random ne doit pas etre vide",random.getGrid());
 	}
 	
 	@Test
@@ -38,7 +35,7 @@ public class TestAbstractPlayer {
 		Grid grid1 = new Grid(new Dimension(5,5));
 		Grid grid2 = new Grid(new Dimension(5,5));
 		AbstractPlayer humain = new HumanPlayer(grid1, "humain");
-		AbstractPlayer random = new RandomPlayer(grid2);
+		AbstractPlayer random = new RandomPlayer(grid2,grid1);
 		
 		
 		//Tests sur le joueur humain
@@ -104,7 +101,7 @@ public class TestAbstractPlayer {
 	    Grid grid1 = new Grid(dimension);
 	    Grid grid2 = new Grid(dimension);
 	    AbstractPlayer humain = new HumanPlayer(grid1, "humain");
-		AbstractPlayer random = new RandomPlayer(grid2);
+		AbstractPlayer random = new RandomPlayer(grid2,grid1);
 	   
 	    // Création d'une flotte de navires
 	    ArrayList<Ship> fleet = new ArrayList<>();
@@ -123,7 +120,7 @@ public class TestAbstractPlayer {
 	    humain.addShip(5, 5, ship3, true);  // ajouter le navire 3 horizontalement
 
 	    // Toutes les cellules de chaque navire ne sont pas touchées, donc la flotte n'est pas coulée
-	    assertFalse(humain.isLost(),"le joueur humain n'a pas encore perdu");
+	    assertFalse("le joueur humain n'a pas encore perdu",humain.isLost());
 
 	    // Faire couler tous les navires
 	    for (Ship ship : fleet) {
@@ -133,7 +130,7 @@ public class TestAbstractPlayer {
 	    }
 
 	    // Toutes les cellules de chaque navire sont touchées, donc la flotte est coulée
-	    assertTrue(humain.isLost(),"le joueur humain a perdu");
+	    assertTrue("le joueur humain doit perdre",humain.isLost());
 	    
 	    //test pour le joueur random
 	    
@@ -143,7 +140,7 @@ public class TestAbstractPlayer {
 	    random.addShip(5, 5, ship3, true);  // ajouter le navire 3 horizontalement
 
 	    // Toutes les cellules de chaque navire ne sont pas touchées, donc la flotte n'est pas coulée
-	    assertFalse(humain.isLost(),"le joueur humain n'a pas encore perdu");
+	    assertFalse("le joueur random n'a pas encore perdu",random.isLost());
 
 	    // Faire couler tous les navires
 	    for (Ship ship : fleet) {
@@ -153,7 +150,7 @@ public class TestAbstractPlayer {
 	    }
 
 	    // Toutes les cellules de chaque navire sont touchées, donc la flotte est coulée
-	    assertTrue(random.isLost(),"le random a perdu");
+	    assertTrue("le random doit perdre",random.isLost());
 		
 		
 		

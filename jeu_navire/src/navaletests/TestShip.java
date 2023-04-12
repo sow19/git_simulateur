@@ -1,27 +1,33 @@
 package navaletests;
 /**
  * /**
- * La classe ShipTest contient les tests unitaires pour la classe Ship.
+ * La classe TestShip contient les tests unitaires pour la classe Ship.
+
  * @author sow224
  *
  */
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import org.junit.Test;
 
 import model.*;
 
-public class ShipTest {
+
+
+import java.util.ArrayList;
+
+
+
+public class TestShip {
 	
 	@Test
 	public void testConstructeur() {
 		Ship ship = new Ship(10);
 		assertNotNull(ship);
-		assertEquals(10,ship.getSize(),"taille OK" );//verifie que la taille du navire est bien initialisé à 10
-		assertEquals(false, ship.isVisible(),"isVisible OK"); // verifie que isvisible est bien initialisé à false
-		assertEquals(true, ship.getShipCell().isEmpty(),"cellule du navire ok");// verifie que la liste est bien une liste vide
+		assertEquals("la taille du navire doit etre 10",10,ship.getSize());//verifie que la taille du navire est bien initialisé à 10
+		assertEquals("la visibilité du navire doit être à false",false, ship.isVisible()); // verifie que isvisible est bien initialisé à false
+		assertEquals("l'ArrayList shipCelle doit etre vide au debut",true, ship.getShipCell().isEmpty());// verifie que la liste est bien une liste vide
 	}
 	
 	
@@ -39,12 +45,12 @@ public class ShipTest {
 		
 		// on met l'etat d'aumoins une  cellule à missed ou Blank
 		Cellule cellule1 = new Cellule();
-		cellule1.setAssignedShip(true);
+		cellule1.setAssignedShip(ship);
 		cellule1.setState(CellState.MISSED);
 		ship.getShipCell().add(cellule1);
 		//une autre cellule qui a BLANK comme etat
 		Cellule cellule2 = new Cellule();
-		cellule2.setAssignedShip(true);
+		cellule2.setAssignedShip(ship);
 		cellule2.setState(CellState.BLANK);
 		ship.getShipCell().add(cellule2);
 		boolean verif2 = ship.isSank();

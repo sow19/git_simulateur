@@ -1,30 +1,30 @@
 package navaletests;
 /**
  * /**
- * La classe GridTest contient les tests unitaires pour la classe Grid.
+ * La classe TestGrid contient les tests unitaires pour la classe Grid.
  * @author sow224
  *
  */
 
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
+
+import org.junit.Test;
 
 import model.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class GridTest {
+public class TestGrid {
 
 	@Test
 	public void testConstructeur() {
 		  Dimension dimension = new Dimension(5, 5);
 	        Grid grid = new Grid(dimension);
-	        assertNotNull(grid);
-	        assertEquals(grid.getDimension(), dimension);
-	        assertEquals(grid.getBoard().length, dimension.getRows());
-	        assertEquals(grid.getBoard()[0].length, dimension.getCols());
+	        assertNotNull("la grille ne doit pas être null après initialisation",grid);
+	        assertEquals("la dimension de la grille doit etre celle passee en argument",grid.getDimension(), dimension);
+	        assertEquals("le nombre de  lignes de la grille doit correspondre à celui spécifié dans dimension",grid.getBoard().length, dimension.getRows());
+	        assertEquals("le nombre de colonnnes de la grille doit correspondre à celui spécifié dans dimension",grid.getBoard()[0].length, dimension.getCols());
 	        for (int i = 0; i < dimension.getRows(); i++) {
 	            for (int j = 0; j < dimension.getCols(); j++) {
 	                assertNotNull(grid.getBoard()[i][j]);
@@ -64,7 +64,7 @@ public class GridTest {
 	        
 	        // on vérifie que l'affichage est le même
 	        
-	        assertEquals(sortie, afficher);
+	        assertEquals("l'affichage doit etre le meme que sortie",sortie, afficher);
 	        
 	}
 	
@@ -80,9 +80,9 @@ public class GridTest {
         // on met l'etat de la cellule à HIT
         cellule.setState(CellState.HIT);
         // on verifie que cellule est bien égale à une cellule qui se trouve sur la position (0,1) dans la grille
-        assertEquals(grid.getBoard()[0][1].getState(), cellule.getState());
-        assertEquals(grid.getBoard()[0][1].isAssignedShip(), cellule.isAssignedShip());
-        assertEquals(grid.getBoard()[0][1], cellule);
+        assertEquals("la cellule doit avoir le meme etat que la cellule à la position 01",grid.getBoard()[0][1].getState(), cellule.getState());
+        assertEquals("la cellule doit avoir le meme etat que la cellule à la position 01",grid.getBoard()[0][1].isAssignedShip(), cellule.isAssignedShip());
+        assertEquals("la cellule doit etre identique  à la cellule à la position 01",grid.getBoard()[0][1], cellule);
 		
 		
 	}
