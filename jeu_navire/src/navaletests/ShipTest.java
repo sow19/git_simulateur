@@ -1,4 +1,10 @@
 package navaletests;
+/**
+ * /**
+ * La classe ShipTest contient les tests unitaires pour la classe Ship.
+ * @author sow224
+ *
+ */
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

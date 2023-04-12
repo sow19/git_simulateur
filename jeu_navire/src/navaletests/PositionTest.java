@@ -1,4 +1,10 @@
 package navaletests;
+/**
+ * /**
+ * La classe PositionTest contient les tests unitaires pour la classe Position.
+ * @author sow224
+ *
+ */
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

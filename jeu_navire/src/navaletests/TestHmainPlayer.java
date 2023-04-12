@@ -1,4 +1,10 @@
 package navaletests;
+/**
+ * /**
+ * La classe TestHumainPlayer contient les tests unitaires pour la classe HumanPlayer.
+ * @author sow224
+ *
+ */
 
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +17,7 @@ import java.io.InputStream;
 import java.util.InputMismatchException;
 
 public class TestHmainPlayer  {
+	//creation de variables communes à toutes les méthodes
 	private Grid grid = new Grid(new Dimension(6,6));
 	private HumanPlayer humain = new HumanPlayer(grid, "saoudatou");
 	
@@ -20,37 +27,33 @@ public class TestHmainPlayer  {
 		assertEquals("saoudatou",humain.getName());
 		assertEquals(grid,humain.getGrid());
 		assertNotNull(humain.getGrid());
-		assertEquals(true, humain.getFleet().isEmpty(),"flot du joueur ok");
+		assertEquals(true, humain.getFleet().isEmpty(),"flot du joueur ko");
 		assertEquals(6, humain.getGrid().getDimension().getRows());
         assertEquals(6, humain.getGrid().getDimension().getCols());
 	}
 	
 	@Test
 	public void testShoot()  throws Exception {
-		
-		
-		
-		String entree = "1,2";
+		//test pour une entrée valide
+		String entree = "A1";
 		
 		InputStream in = new ByteArrayInputStream(entree.getBytes());
         System.setIn(in);
         
         Position resultat = humain.shoot();
-        Position position = new Position(1,2);
+        Position position = new Position(0,1);
         
         assertEquals(position.getX(),resultat.getX());
         assertEquals(position.getY(),resultat.getY());
+        //test pour une entrée invalide
+        //on simule plusieurs entrées utilisateur invalides ("A", "1A")  avant de simuler l'entrée valide "B1  
+        ByteArrayInputStream in2 = new ByteArrayInputStream("A\n1A\nB1\n".getBytes());
+        System.setIn(in2);
+        Position position1 = humain.shoot();
+        assertEquals(1, position1.getX());
+        assertEquals(1, position1.getY());
         
-        try {
-            entree = "1 2";
-            in = new ByteArrayInputStream(entree.getBytes());
-            System.setIn(in);
-            humain.shoot();
-            fail("Une exception de type InputMismatchException aurait du etre levee");
-          } catch (InputMismatchException ise) {
-        		 in = new ByteArrayInputStream(entree.getBytes());
-                System.setIn(in);
-          }
+        
 		
 	}
 	

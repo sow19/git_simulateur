@@ -1,4 +1,10 @@
 package navaletests;
+/**
+ * /**
+ * La classe TestAbstractPlayer contient les tests unitaires pour la classe AbstractPlayer.
+ * @author sow224
+ *
+ */
 
 import org.junit.jupiter.api.Test;
 
@@ -15,17 +21,17 @@ import java.io.PrintStream;
 
 public class TestGame {
 	
-	private  Grid gridHumain = new Grid(new Dimension(5,5));
-	private  Grid gridRandom = new Grid(new Dimension(5,5));
-	private  HumanPlayer humain = new HumanPlayer(gridHumain, "Joueur humain");
-    private  RandomPlayer random = new RandomPlayer(gridRandom,gridHumain);
+	private  Grid grid1 = new Grid(new Dimension(5,5));
+	private  Grid grid2 = new Grid(new Dimension(5,5));
+	private  HumanPlayer humain = new HumanPlayer(grid1, "Joueur humain");
+    private  RandomPlayer random = new RandomPlayer(grid2);
     private  Game game = new Game(humain, random);
 	
 	@Test
 	public void testConstructeur() {
 		Grid grid = new Grid(new Dimension(7,7));
 		HumanPlayer humain = new HumanPlayer(grid, "Alseiny");
-		RandomPlayer random = new RandomPlayer(grid,gridHumain);
+		RandomPlayer random = new RandomPlayer(grid);
 		Game game = new Game(humain,random);
 		assertEquals(humain.getName(), game.getCurrentPlayer().getName());
 		assertEquals(random.getName(), game.getRandomPlayer().getName());
@@ -55,7 +61,7 @@ public class TestGame {
 		 Grid grid1 = new Grid(new Dimension(5,5));
 		
 	     HumanPlayer humain = new HumanPlayer(grid1, "Joueur humain");
-	     RandomPlayer random = new RandomPlayer(grid1,gridHumain);
+	     RandomPlayer random = new RandomPlayer(grid2);
 	     Game game = new Game(humain, random);
 
 	       //deux joueurs ne peuvent pas gagner en même temps donc on teste pour chaque joueur à part

@@ -1,4 +1,10 @@
 package navaletests;
+/**
+ * /**
+ * La classe GridTest contient les tests unitaires pour la classe Grid.
+ * @author sow224
+ *
+ */
 
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +49,9 @@ public class GridTest {
 	        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	        System.setOut(new PrintStream(outContent));
 	        
-	        String sortie = "A X ! X \n" +
+	        String sortie = " "+
+	        				" 1 2 3 \n"+
+	        				"A X ! X \n" +
                     		"B * * ! \n" +
                     		"C * * * \n" ;
 	         grid.afficher();

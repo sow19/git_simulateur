@@ -1,4 +1,10 @@
 package navaletests;
+/**
+ * /**
+ * La classe TestAbstractPlayer contient les tests unitaires pour la classe AbstractPlayer.
+ * @author sow224
+ *
+ */
 
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +20,7 @@ public class TestAbstractPlayer {
 		Grid grid1 = new Grid(new Dimension(5,6));
 		Grid grid2 = new Grid(new Dimension(5,6));
 		AbstractPlayer humain = new HumanPlayer(grid1, "humain");
-		AbstractPlayer random = new RandomPlayer(grid2,grid1);
+		AbstractPlayer random = new RandomPlayer(grid2);
 		
 		assertEquals("humain", humain.getName());
 		assertEquals("Random", random.getName());
@@ -32,7 +38,7 @@ public class TestAbstractPlayer {
 		Grid grid1 = new Grid(new Dimension(5,5));
 		Grid grid2 = new Grid(new Dimension(5,5));
 		AbstractPlayer humain = new HumanPlayer(grid1, "humain");
-		AbstractPlayer random = new RandomPlayer(grid2,grid1);
+		AbstractPlayer random = new RandomPlayer(grid2);
 		
 		
 		//Tests sur le joueur humain
@@ -98,7 +104,7 @@ public class TestAbstractPlayer {
 	    Grid grid1 = new Grid(dimension);
 	    Grid grid2 = new Grid(dimension);
 	    AbstractPlayer humain = new HumanPlayer(grid1, "humain");
-		AbstractPlayer random = new RandomPlayer(grid2,grid1);
+		AbstractPlayer random = new RandomPlayer(grid2);
 	   
 	    // Création d'une flotte de navires
 	    ArrayList<Ship> fleet = new ArrayList<>();
