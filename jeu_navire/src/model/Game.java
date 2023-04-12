@@ -109,11 +109,21 @@ public class Game extends AbstractListenableModel {
 		} else {
 			celluleAdversaire.setState(CellState.MISSED);
 		}
-		adversaire.putShipVisible();
+		
+		// Check if ship is sanked and show it
+		if(celluleAdversaire.isAssignedShip()) {
+			Ship ship = celluleAdversaire.getAssignedShip();
+			if(ship.isSank()) {
+				ship.setVisible(true);
+			}
+		}
 	
 		this.currentPlayer = adversaire;
 	}
 
+	/**
+	 * Create human fleet randomly
+	 */
 	public void humanAddShipRandomLy() {
 		this.humainPlayer.addShipRandomLy();
 		this.humainPlayer.putShipVisible();
@@ -121,11 +131,18 @@ public class Game extends AbstractListenableModel {
 	}
 
 
+	/**
+	 * Create random fleet
+	 */
 	public void randomAddShip() {
 		this.randomPlayer.addShipRandomLy();
 		this.fireChangement(GameNotification.RANDOM_FLEET_CREATED);
 	}
 
+	
+	/**
+	 * Start the game
+	 */
 	public void startGame() {
 		this.randomAddShip();
 		this.setStarted(true);
