@@ -131,9 +131,7 @@ public class ViewOneCell extends JPanel implements ListeningModel {
         if(parent instanceof GridView) {
             GridView gridViewparent = (GridView) parent;
 
-            System.out.println("click");
-            System.out.println(cellOfGrid.getPosition().getX() + "," + cellOfGrid.getPosition().getY());
-
+            
             if(!gridViewparent.isHumanGrid()) {
                  // Get game model from grand-parent component
                 ControleGame grandParentCGame = (ControleGame) gridViewparent.getParent();
@@ -192,12 +190,8 @@ public class ViewOneCell extends JPanel implements ListeningModel {
      */
     @Override
     public void modeleMIsAJour(Object source, Object notification) {
-        System.out.println("notif");
         if (notification instanceof CellNotification) {
             if (notification == CellNotification.STATE_CHANGED) {
-                System.out.println("notif state");
-                System.out.println(cellOfGrid.getPosition().getX() + "," + cellOfGrid.getPosition().getY());
-                System.out.println("======= \n");
                 handleStateChanged();
             }
         } else {
