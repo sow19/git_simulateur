@@ -6,7 +6,6 @@ import util.notifications.CellNotification;
 /**
  * classe representant une cellule de la grille d'un joueur
  */
-
 public class Cellule extends AbstractListenableModel {
 	private Position position;
 	private CellState state;
@@ -32,8 +31,7 @@ public class Cellule extends AbstractListenableModel {
 	 * @param position
 	 */
 	public Cellule() {
-		this.state = CellState.BLANK;
-		this.assignedShip = null;	
+		this(null);	
 	}
 
 	//getters et setters

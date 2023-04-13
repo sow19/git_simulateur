@@ -84,7 +84,6 @@ public class Game extends AbstractListenableModel {
     * Elle prend en paramètre la position à laquelle le joueur souhaite tirer.
     * L'adversaire est choisi en fonction du joueur courant.
     * Si la cellule visée contient un bateau, sa cellule est mise à jour en tant que HIT, sinon elle est mise à jour en tant que MISSED.
-    * La méthode putShipVisible est appelée sur l'adversaire pour mettre à jour l'état(la visibilité) des bateaux.
     * Enfin, le joueur courant est changé pour passer à l'adversaire.
     @param position la position visée par le joueur
     */
@@ -95,15 +94,10 @@ public class Game extends AbstractListenableModel {
 	
 		if (celluleAdversaire.isAssignedShip()) {
 			if(currentPlayer instanceof RandomPlayer)
-				System.out.println("Hited");
 			celluleAdversaire.setState(CellState.HIT);
 			if(currentPlayer instanceof RandomPlayer) {
 				int x = position.getX();
-				int y = position.getY();
-				System.out.println("(" + x + "," + y + ")");	
-				System.out.println(celluleAdversaire.getState());
-				System.out.println(adversaire.getGrid().getCellulePosition(position).getState());
-				System.out.println(celluleAdversaire.getState() == CellState.HIT);
+				int y = position.getY();	
 			}
 				
 		} else {

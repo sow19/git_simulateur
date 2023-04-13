@@ -1,23 +1,15 @@
 package views;
 
 import java.awt.Color;
-// import java.awt.CardLayout;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-// import java.io.IOException;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
 import model.AbstractPlayer;
 import model.Game;
 import model.HumanPlayer;
@@ -49,9 +41,6 @@ public class ControleGame extends JPanel implements ListeningModel {
 	protected JPanel buttonPanel;
 	protected JButton randomButton; // randomly add ships for human player
 	protected JButton playButton; // start the game
-
-	// protected ArrayList<ViewShip> viewShipsHuman = new ArrayList<ViewShip>();
-	// protected ArrayList<ViewShip> viewShipsRandom = new ArrayList<ViewShip>();
 
 	public ControleGame(PageManager pageManager, Game game) {
 		super();
@@ -180,11 +169,6 @@ public class ControleGame extends JPanel implements ListeningModel {
 		}
 		
 	}
-
-	// public void createRandomFleet() {
-	// 	// Add ships randomly on the model
-	// 	this.game.randomAddShip();
-	// }
 	
 	/**
 	 * Handler for human fleet created notification

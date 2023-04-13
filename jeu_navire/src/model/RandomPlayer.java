@@ -1,9 +1,6 @@
 package model;
-
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Random;
-import config.Config;
 
 
 /**
@@ -60,19 +57,10 @@ public class RandomPlayer extends AbstractPlayer {
         for (Position position : positionsAlreadyShot) {
 			int x = position.getX();
             int y = position.getY();
-			System.out.println("(" + x + "," + y + ")");
-
-			System.out.println(gridOpponent.getCellulePosition(position).getState());
-
 			if(gridOpponent.getCellulePosition(position).getState() != CellState.HIT) {
 				continue;
 			}
 
-			System.out.println("Here");
-			
-
-            
-			
 			// Positionad adjacentes
 			ArrayList<Position> nestedPositions = new ArrayList<Position>();
 			nestedPositions.add(new Position(x - 1, y));
@@ -89,11 +77,9 @@ public class RandomPlayer extends AbstractPlayer {
 
         // Si aucune position probable n'est trouvée, tirer aléatoirement
         if (positionsProbables.isEmpty()) {
-			System.out.println("Random shoot");
             resPos = randomShoot();
         } else {
 			// Choisir une position probable aléatoirement parmi les positions probables
-			System.out.println("inteligent shoot");
 			int index = random.nextInt(positionsProbables.size());
 			resPos = positionsProbables.get(index);
 		}

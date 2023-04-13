@@ -9,20 +9,10 @@ public class Demo {
         HumanPlayer humain = new HumanPlayer(grid1, "Joueur humain");
         RandomPlayer random = new RandomPlayer(grid2, grid1);
         Game game = new Game(humain, random);
+        humain.humainAddShip();
+        random.addShipRandomLy();
 
-        /*System.out.println("la grille du random avant la méthode ad");
-        random.grid.afficher();*/
-
-
-        //random.addShipRandomLy();
-     
-
-      humain.humainAddShip();
-
-      
-      //System.out.println(humain.shoot());
-
-      //game.play();
+      game.play();
 
 
 	 

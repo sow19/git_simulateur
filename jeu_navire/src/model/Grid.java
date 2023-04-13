@@ -72,9 +72,6 @@ public class Grid extends AbstractListenableModel {
 	public Cellule getCellulePosition(Position position){
 		int x = position.getX();
 		int y = position.getY();
-		System.out.println("(" + x + "," + y + ")");
-		System.out.println(board.length);
-		System.out.println(board[0].length);
 		if( x >= 0 && x < board.length && y >= 0 && y < board[0].length)
 			return this.board[position.getX()][position.getY()];
 		else

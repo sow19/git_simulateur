@@ -1,6 +1,4 @@
 package model;
-
-import java.util.Random;
 import config.Config;
 import util.AbstractListenableModel;
 
@@ -179,7 +177,6 @@ public abstract class AbstractPlayer extends AbstractListenableModel {
 			}
 
 		}
-		//this.grid.afficher();
 	}
 	/**
 	 *  méthode abstraite permettant  au joueur de choisir la position sur laquelle il va effectuer son tir
