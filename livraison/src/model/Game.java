@@ -93,12 +93,7 @@ public class Game extends AbstractListenableModel {
 		Cellule celluleAdversaire = adversaire.getGrid().getCellulePosition(position);
 	
 		if (celluleAdversaire.isAssignedShip()) {
-			if(currentPlayer instanceof RandomPlayer)
 			celluleAdversaire.setState(CellState.HIT);
-			if(currentPlayer instanceof RandomPlayer) {
-				int x = position.getX();
-				int y = position.getY();	
-			}
 				
 		} else {
 			celluleAdversaire.setState(CellState.MISSED);
