@@ -9,7 +9,7 @@ public class Demo {
         HumanPlayer humain = new HumanPlayer(grid1, "Joueur humain");
         RandomPlayer random = new RandomPlayer(grid2, grid1);
         Game game = new Game(humain, random);
-        humain.humainAddShip();
+        humain.addShipRandomLy();
         random.addShipRandomLy();
 
       game.play();
