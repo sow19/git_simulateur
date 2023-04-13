@@ -1,14 +1,21 @@
 
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+
 import config.Config;
+
 import model.Dimension;
 import model.Game;
 import model.Grid;
 import model.HumanPlayer;
 import model.RandomPlayer;
+
 import views.MainGUI;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnsupportedLookAndFeelException {
+		UIManager.setLookAndFeel(new NimbusLookAndFeel());
 		// Creating human player grid object
 		Grid grid = new Grid(new Dimension(Config.GRID_Rows, Config.GRID_Cols));
 

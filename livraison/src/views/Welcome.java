@@ -2,17 +2,11 @@ package views;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -73,21 +67,6 @@ public class Welcome extends JPanel {
 	 */
 	public void startButtonClicked() {
 		pageManager.nextPage();
-	}
-	
-	
-	@Override
-	protected void paintComponent(Graphics g) {
-	    super.paintComponent(g);
-	 // Load the background image
-        BufferedImage img = null;
-		try {
-			img = ImageIO.read(this.getClass().getResource("../assets/wp.jpg"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	     g.drawImage(img, 0, 0, null);
 	}
 
 }

@@ -2,7 +2,6 @@
 	<property name="projet.sources.dir" value="src"/>
 	<property name="projet.bin.dir" value="bin"/>
 	<property name="projet.lib.dir" value="lib"/>
-	<property name="projet.data.dir" value="data"/>
 	<property name="projet.doc.dir" value="doc"/>
 	<property name="projet.dist.dir" value="dist"/>
 	<path id="projet.classpath">
@@ -20,7 +19,6 @@
 		<echo message="Initialisation du projet batail naval"/>
 		<delete dir="${basedir}/${projet.bin.dir}"/>
 		<mkdir dir="${basedir}/${projet.bin.dir}"/>
-		<mkdir dir="${basedir}/${projet.data.dir}"/>
 	</target>
 	<target name="run" description="execution" depends="compile">
 		<java classname="Main" fork="true">
@@ -55,7 +53,6 @@
 		<delete dir="${basedir}/${projet.bin.dir}"/>
 		<delete dir="${basedir}/${projet.doc.dir}"/>
 		<delete dir="${basedir}/${projet.dist.dir}"/>
-		<delete dir="${basedir}/${projet.data.dir}"/>
 	</target>
 	<target name="test" depends="compile" description="Teste du batail naval">
         <junit printsummary="true" haltonerror="no" haltonfailure="no" showoutput="true">
