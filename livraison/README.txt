@@ -6,7 +6,7 @@ Membre de l'equipe:
 
 - SOW Mamriama Saoudatou 	22209828
 
-- Mamadou Alpha 		22107614
+- DIALLO Mamadou Alpha 		22107614
 
 - KOTIN Mahudo Narcisse 	22211719
 
@@ -16,7 +16,9 @@ Les sources java de la librairie sont toutes dans le répertoire src, et les sou
 
 Une fois à la racine du projet, Exécuter les commandes suivantes:
 
-- "ant run" pour lancer le programme
+- "ant runConsol" pour lancer le programme sur le terminal
+
+- "ant runInterface" pour lancer le programme avec l'interface graphique
 
 - "ant test" pour lancer les tests du programme
 
