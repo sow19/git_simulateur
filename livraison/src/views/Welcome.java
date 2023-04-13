@@ -82,7 +82,7 @@ public class Welcome extends JPanel {
 	 // Load the background image
         BufferedImage img = null;
 		try {
-			img = ImageIO.read(this.getClass().getResource("/assets/wp.jpg"));
+			img = ImageIO.read(this.getClass().getResource("../assets/wp.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
