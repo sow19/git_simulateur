@@ -45,26 +45,28 @@ public HumanPlayer() {
 		Scanner scanner = new Scanner(System.in);
 		String entree = "";
 		int x = 0, y = 0;
+
 	
 		boolean entreeValide = false;
 		while (!entreeValide) {
 			try {
 				System.out.println("Choisissez une case (ex : A1) : ");
 				entree = scanner.nextLine();
-				if (entree.length() == 2 && Character.isLetter(entree.charAt(0)) && Character.isDigit(entree.charAt(1)) && Character.isUpperCase(entree.charAt(0))) {
+				if (entree.length() == 2 && Character.isLetter(entree.charAt(0)) 
+				&& Character.isDigit(entree.charAt(1)) && Character.isUpperCase(entree.charAt(0)) && (entree.charAt(0) - 'A'<= 'J' - 'A')) {
+					
 					x = entree.charAt(0) - 'A';
 					y = Character.getNumericValue(entree.charAt(1));
+					entreeValide = true;
 				}else if (entree.length()!=2) {
 					throw new StringIndexOutOfBoundsException("vous devez entrer une case (ex : A1)");
-				
 				}else if (Character.isDigit(entree.charAt(0))) {
-					throw new IllegalArgumentException("La première lettre doit être une lettre majuscule");
+					throw new IllegalArgumentException("La première valeur doit être une lettre (A...J)");
 				} else if (Character.isLetter(entree.charAt(1))) {
-					throw new IllegalArgumentException("La deuxième lettre doit être un entier");
+					throw new IllegalArgumentException("La deuxième valeur doit être un entier (1..9)");
 				} else {
 					System.out.println("entrée invalide");
 				}
-				entreeValide = true;
 			} catch (IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 			} catch( StringIndexOutOfBoundsException e){

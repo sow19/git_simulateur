@@ -11,8 +11,7 @@ public class Demo {
         Game game = new Game(humain, random);
         humain.addShipRandomLy();
         random.addShipRandomLy();
-
-      game.play();
+        game.play();
 
 
 	 

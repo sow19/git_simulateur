@@ -85,7 +85,7 @@ public class Grid extends AbstractListenableModel {
 
 		System.out.print("  ");
         for (int i = 0; i < dimension.getRows(); i++) {
-            System.out.print(i + 1 + " ");
+            System.out.print(i  + " ");
         }
         System.out.println();
 
@@ -100,7 +100,7 @@ public class Grid extends AbstractListenableModel {
 					System.out.print("! ");
 				}
 				else{
-					System.out.print("* ");
+					System.out.print("  ");
 				}
 			}
 			System.out.println();

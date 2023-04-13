@@ -146,7 +146,10 @@ public class Game extends AbstractListenableModel {
     */
 	public void play() {
         while (!isOver()) {
+			AbstractPlayer adversaire = (this.currentPlayer == this.humainPlayer) ? this.randomPlayer : this.humainPlayer;
             System.out.println(currentPlayer.getName() + " joue :");
+			System.out.println("grille de :"+adversaire.getName());
+			adversaire.grid.afficher();
             Position pos = currentPlayer.shoot();
             this.shootGridAdversaire(pos);
 			this.getWinner();
